@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}
+{{page.title}}
+{% endblock title %}
+{% block extra_css %}
+<link href="{% static 'css/saheh.css' %}" rel="stylesheet" />
+
+
+{% endblock extra_css %}
+{% block content %}
+<!-- start saheh -->
+<div class="saheh mg-bot" dir="rtl">
+    <div class="alert header-dark">
+        <div class='container d-flex align-content-center align-items-center justify-content-rigth  '>
+            {% include 'ui/back/back_btn.html' %}
+            <div>    
+                <a href="{% url 'base:saheh'   %}">{{page.title}} </a>
+                {% if mybook %}
+                / <a href="{% url 'base:saheh_book' mybook.id %}"> {{mybook.name}}</a>
+                {% endif %}
+                {% if mychapter %}
+                / <a href="{% url 'base:saheh_chapter' mychapter.id %}">{{mychapter.name}}</a>
+                {% comment %} {% endcomment %}
+                {% comment %} "{% url 'base:saheh_chapter' mychapter.id %}" {% endcomment %}
+                {% endif %}
+            </div>
+        </div>
+        <!-- ./container -->
+    </div>
+    
+    <!-- <div class="arrow">
+        <svg aria-hidden="true" focusable="False" data-prefix="fas" data-icon="angle-down"
+            class="svg-inline--fa fa-angle-down fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512">
+            <path fill="currentColor"
+                d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z">
+            </path>
+        </svg>
+    </div> -->
+    <div class='container'>
+        <div class="row">
+            
+            <div class="col-lg-3 col-md-4 ">
+                <!-- ./Chapters -->
+                <div class='chapters'>
+                    <div class="just-padding">
+                        <div id="TogglerListClick" class="list-group list-group-root well ">
+                            <a class="list-group-item header-dark sider_curser">{% translate "books in AlSaheh" %} </a>
+                            <div   class="TogglerList list-group mylist-group overflow-auto my-custom-scrollbar bg-border-side_bar">
+                                {% comment %} {% url   'base:saheh_chapter' mychapter.id  as saheh_chapter_url %}
+                                / <a href="{% url_section_param saheh_chapter_url   'chapter' mychapter.id %} ">{{mychapter.name}}</a> {% endcomment %}
+                                {% for book_in in al_saheh_books  %}
+                           
+                                {% comment %} 
+                                {% url 'base:saheh_book' book_in.id as book_in_url %}
+                                {% url   'base:saheh_chapter' mychapter.id  as saheh_chapter_url %}
+                                <a href="{% url_section_param saheh_chapter_url   'chapter' mychapter.id %} ">{{mychapter.name}}</a> {% endcomment %}
+                                
+                                {% url 'base:saheh_book' book_in.id as book_in_url %}
+                                {% concat 'book' book_in.id  as book_in_id %}
+                                {% add_section_param book_in_url book_in_id as book_full_url %}
+
+                                <a  href="{% if book_in.id != mybook.id %}{{book_full_url}}{% else %}#book_in{{book_in.id}}{% endif %}" {% if book_in.id == mybook.id %}  
+                                    id='{{book_in_id}}'    
+                                data-bs-toggle="collapse" role="button"  aria-expanded="false" aria-controls="collapseExample"
+                                 {% endif %} class="a list-group-item {% if book_in.id == mybook.id %} selc-active {% else %} selc_not_active{% endif %}">{% slice_text   book_in.name %}</a>
+                                 
+                               
+                                {% if book_in.id == mybook.id %}
+                                <div class="list-group collapse show" id="book_in{{book_in.id}}" data-toggle="collapse" data-target="#book_in{{book_in.id}}" aria-expanded="false" aria-controls="book_in{{book_in.id}}">                                   
+                                    {% for chapter_in in book_chapters  %}
+                                    
+                                    {% url 'base:saheh_chapter' chapter_in.id as chapter_in_url %}
+                                    {% concat 'chapter' chapter_in.id  as chapter_in_id %}
+                                    {% add_section_param chapter_in_url chapter_in_id as chapter_full_url %}
+
+                                    
+                                        <a   
+                                        id='{{chapter_in_id}}'
+                                        href="{% if chapter_in.id != mychapter.id %}{{chapter_full_url}}{% else %}#chapter_in{{chapter_in.id}}{% endif %}" {% if chapter_in.id == mychapter.id %}  
+                                        data-bs-toggle="collapse" role="button"aria-expanded="false" aria-controls="collapseExample" {%  endif %}
+                                        class="a list-group-item {% if chapter_in.id == mychapter.id %} selc-active  {% else %} selc_not_active {% endif %}">
+                                        {% slice_text   chapter_in.name %}  
+                                        </a>
+                                        {% if chapter_in.id == mychapter.id %}
+                                        
+                                        {% for had_in in  chapter_hadiths  %}
+                                        
+                                             
+
+                                        <div class="had list-group mylist-group">
+                                            {% url 'base:saheh_media_video' had_in.id  as had_url_vid %}
+                                            {% url 'base:saheh_media_audio' had_in.id  as had_url_aud %}
+                                            {% url 'base:saheh_media_read' had_in.id  as had_url_read %}
+    
+                                          
+
+                                            <a onclick=" set_data('{%prep_str  had_in.text_without_tashkil %}','{{had_url_vid}}','{{had_url_aud}}' , '{{had_url_read}}');set_color('#hadith{{had_in.id}}')"
+                                                id="#hadith{{had_in.id}}"
+                                                class="a list-group-item {% if  had_in.id == selected_hd %}selc-active {%else%} selc-not-active-had {% endif %}  ">
+                                                {% slice_text had_in.text %}
+
+                                            </a>
+    
+                                            </div>
+                                            {% if had_in.id == chapter_hadiths.0.id %}
+                                            <script>
+
+                                                $(document).ready(function(){
+                                                    const  v_had_id = "{{had_in.id}}";
+                                                    const  v_had_id_txt =`#hadith${v_had_id}`
+
+                                                    document.getElementById(v_had_id_txt).click()
+                                                    });
+                                            </script>
+
+                                          
+                                        {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                                    
+ 
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- ./Chapters -->
+
+            <div class="col-lg-9 col-md-8 mt-3 mt-md-0">
+                <!-- ./btn-rows -->
+                <div class='btn-rows text-center'>
+                    <!-- hide_elm('video-tafsir') " -->
+                    <a class="btn btn-move  mx-lg-2 mx-md-1" {% if mybook.name == "المقدمة" %} style="display: none" {% endif %} id="tafsir_vid_a"> التفسير المرئى </a>
+                    <a class=" btn btn-move  mx-lg-2 mx-md-1" {% if mybook.name == "المقدمة" %} style="display: none" {% endif %} id="tafsir_aud_a"> التفسير الصوتى </a>
+                    <a class=" btn btn-move  mx-lg-2 mx-md-1" {% if mybook.name == "المقدمة" %} style="display: none" {% endif %} id="tafsir_read_a"> التفسير المقروء </a>
+
+
+                </div><!-- ./btn-rows -->
+
+
+
+                <!-- ./content-place -->
+                <div class='content-place bg-border-side_bar' style="padding: 20px !important;" >
+{#                   {{ chapter_hadiths.first.text_without_tashkil|safe }}#}
+                    <p id="tafsir_text_p" class="hadith-text" >
+
+
+                    </p>
+                </div><!-- ./content-place -->
+            </div>
+
+        </div>
+
+    </div><!-- ./container -->
+</div>
+<!-- end saheh -->
+<style>
+    @media only screen and (max-width: 767px){
+        #tafsir_text_p p, #tafsir_text_p ul {
+            margin: 0;
+            padding-right: 0;
+            padding-left: 0;
+        }
+    }
+
+
+</style>
+{% endblock content %}
+
+{% block load_more_js %}
+<script type="text/javascript" src="{% static 'js/saheh0.js' %}"></script>
+{% endblock load_more_js %}

@@ -1,0 +1,95 @@
+{% load custom_tags %}
+{% load i18n %}
+
+
+{% if quran_results or hadith_results or book_results  or book_content_results%}
+    <ul class="list-group" style="padding: 0; border-radius: 0px;">
+        {% if quran_results %}
+        <li class="list-group-item  " style="padding: 0px; padding-right: 10px;">
+            <p style="color: var(--main-color);" class='fw-bold'>نتائج البحث فى القران الكريم</p>
+        </li>
+        {% for object in quran_results %}
+        {% for aya in ayat_tafsir %}
+        {% if aya.sura_id == object.sura_id %}
+        {% if object.id >= aya.aya_start_id and object.id <= aya.aya_end_id %}
+        {% comment %} <p class="text-secondary">{% span_world object.text_without_tashkil query %}</p> {% endcomment %}
+        <a class="list-group-item"  href="{{aya.video_url}}" 
+        style="  line-height: 30px; padding: 10px;">
+        <span   class='active' >
+            {% slice_text object.text_without_tashkil  as my_text  %} 
+            {% span_world object.text_without_tashkil query %}
+        </span>
+        </a>
+           
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+        {% endfor %}
+        {% endif %}
+
+        {% if hadith_results %}
+        <li 
+        class="list-group-item   " style="padding: 0px; padding-right: 10px;" 
+        >    <p style="color: var(--main-color);" class=' fw-bold'>نتائج البحث فى الحديث الشريف</p>
+        </li>
+        {% for hadith in hadith_results %}
+        <li class="list-group-item" style="  line-height: 30px; padding: 10px;">
+            <a   class='active' href="{% url 'base:saheh_media_video' hadith.id %}" class="text-secondary">
+            
+                {% slice_text hadith.text as my_text  %}
+                {% span_world my_text query  %}
+            
+            </a>
+             
+        </li>
+        {% endfor %}
+        {% endif %}
+
+        {% if book_results %}
+        <li class="list-group-item   " style="padding: 0px; padding-right: 10px; "  >
+            <p style="color: var(--main-color);" class=' fw-bold'>نتائج البحث فى الكتب</p>
+        </li>
+        {% for book in book_results %}
+        <a  href="{% url 'base:book' book.id %}" class="list-group-item" style="  line-height: 30px; padding: 10px;">
+            
+            
+            <span class='active'  >
+                {% slice_text book.title as my_text  %} 
+                {% span_world my_text  query %}
+            </span>
+          
+        </a>
+        {% endfor %}
+        {% endif %}
+        {% comment %} background: #cfe2ff; {% endcomment %}
+        {% if book_content_results %}
+        <li class="list-group-item disabled" style="padding: 0px; padding-right: 10px; ">
+            <p style="color: var(--main-color);" class=' fw-bold'>نتائج البحث فى داخل الكتب</p>
+        </li>
+        {% for book_content_result in book_content_results %}
+        <a class="list-group-item" style="  line-height: 30px; padding: 10px;">
+            <span  class='active'  href="{% url 'base:book' book_content_result.book.id %}"  class="text-secondary">
+                {% slice_text book_content_result as my_text  %}
+
+
+                {% span_world my_text query %}
+            
+            </span>
+           
+        </a>
+        {% endfor %}
+        {% endif %}
+
+    </ul>
+    
+{% else %}
+    <ul class="list-group" style="padding: 0; border-radius: 0px;">
+        <li class="list-group-item" style="line-height: 30px; padding: 10px; padding-bottom:5px">
+            <p class="text-secondary text-center"> لا يوجد نتائج بحث</p>
+        </li>
+    </ul>
+{% endif %}
+
+<div style="background-color:#ffffff; padding: 10px; margin-bottom: -5px;" dir="ltr">
+    <button type="submit"  class='active' style="background: none; padding: 0; border: none;  ">بحث متقدم</button>
+</div> 

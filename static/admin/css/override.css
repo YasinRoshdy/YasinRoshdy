@@ -1,0 +1,52 @@
+#change-history td, #change-history th, .change-list table td, .change-list table th, .dashboard table td, .dashboard table th, .results table td, .results table th, .tabular table td, .tabular table th {
+    text-align: right !important;
+
+}
+
+.change-list #changelist.filtered .actions, .change-list #changelist.filtered .paginator, .change-list #changelist.filtered .results, .change-list #changelist.filtered .xfull {
+    margin-right: 0px !important;
+}
+
+.change-list #changelist #has-filters~.paginator, .change-list #changelist #toolbartable .paginator, .change-list #changelist .results+.paginator {
+    position: relative !important;
+}
+
+form select {
+    background-position: left !important;
+}
+
+body.login.djangocms-admin-style #container #content #content-main .form-row label {
+    float: right !important;
+}
+
+/* form .form-row .filer-dropzone .filerFile .filerClearer {
+    margin: 0 !important;
+} */
+
+form .form-row .filer-dropzone .filerFile .related-lookup.related-lookup-change {
+    margin: 24px 0 0 5px !important
+}
+
+#content-main {
+
+    margin-top: 65px !important;
+}
+
+.change-list #changelist #changelist-filter {
+    /* position: static; */
+    float: left !important;
+}
+
+#content-main .object-tools a:before {
+    margin-left: 5px !important;
+}
+
+
+.related-widget-wrapper select {
+    width: calc(100% - 92px) !important;
+}
+
+
+form .aligned label+div.readonly{
+    margin-top: 0;
+}

@@ -1,0 +1,376 @@
+{% extends 'base.html' %}
+{% load custom_tags %}
+{% load static %}
+
+{% block title %}
+{{page.title}}
+{% endblock title %}
+
+{% block content %}
+
+ 
+    
+
+<!--  ---------------------------------------start ./about--------------------------------------- -->
+<div class='about rtl mg-top mg-bot'>
+    <div class='container'>
+        <section class="shaikh about-part ar-text">
+            <p class="header-title ">نبذة عن الشيخ</p>
+            <p class="fw-n fs-n"> {{ info.about_sheikh_short|default:"وُلد فضيلته بمصر فى الأول من يناير من عام 1932م.<br> حصل على بكالوريوس العلوم البحرية سنة 1952م. وشهادة ربان لأعالى البحار عام 1967 م. تدرج سيادته بالوظائف المدنية حتى درجة وكيل وزارة ثمَّ استقال من الوظائف المدنية عام 1983م. للتفرغ لأمور الدعوة والأعمال الخيرية."}}
+            </p>
+            <a href="{% url_section 'base:about_us' 'about_sheikh' %}"> <span> اقرأ المزيد</span></a>
+
+        </section>
+        <!-- <section class="association about-part ar-text mg-top mg-bot ">
+
+            <p class="header-title"> نبذة عن الجمعية</p>
+            <p class="fw-n fs-n"> {{ info.about_mousa_short|default:" تأسست جمعية المواساة الإسلامية بالإسكندرية عام 1910 م .<br> ترأس الجمعية فضيلة الشيخ ياسين محمد رشدى سنة 1991 ميلادية، حتى وفاته يوم الأربعاء السادس عشر من شهر شعبان سنة 1431 هجرية. الموافق الثامن و العشرون من شهر يوليو سنة 2010 ميلادية."}}
+            </p>
+            <a href="{% url_section 'base:about_us' 'about_mousa' %}"> <span> اقرأ المزيد</span></a>
+        </section> -->
+    </div><!-- ./container -->
+</div>
+<!--  ---------------------------------------end ./about--------------------------------------- -->
+
+<!--  ---------------------------------------start ./daily--------------------------------------- -->
+<div class='daily'>
+    <div class='container'>
+
+        <!-- ./taps -->
+        <div class='taps rtl fs-b'>
+
+            <!-- class="{% if nbar == 'home' %}active{% endif %}" -->
+            <div class='item  text-center'>
+
+                <div class="data_layer1 tablinks" id="defaultOpen" onclick="change_daily_taps(event, 1 )">
+                    <div class='svg active' style="width:56px;height:74px">
+                        <img id="img_src_1" class="path" src="{% static 'icons/day/active/qurann.svg' %}" />
+
+                    </div><!-- ./svg -->
+                    <p>آية اليوم</p>
+                </div>
+            </div><!-- ./item -->
+            <div class='item  '>
+
+                <div class="data_layer1 tablinks" onclick="change_daily_taps(event, 2)">
+                    <div class='svg'  style="width:74px;height:74px">
+                        <!-- <svg> -->
+
+                        <!-- <img class="path" src="{% static 'icons/dayshadith.svg' %}" /> -->
+                        <img id="img_src_2" class="path" src="{% static 'icons/day/in/dayshadith.svg' %}" />
+
+                        <!-- </svg> -->
+
+
+                    </div><!-- ./svg -->
+                    <p>حديث اليوم </p>
+                </div>
+            </div><!-- ./item -->
+            <div class='item '>
+
+                <div class="data_layer1 tablinks" onclick="change_daily_taps(event, 3)">
+                    <div class='svg' style="width:60.2px;height:74.8px">
+                        <img id="img_src_3" class="path" src="{% static 'icons/day/in/daysfatwa.svg' %}" />
+
+                    </div><!-- ./svg -->
+                    <p>فتوى اليوم</p>
+                </div>
+            </div><!-- ./item -->
+
+            <div class='item  '>
+
+                <div class="data_layer1 tablinks" onclick="change_daily_taps(event, 4)">
+                    <div class='svg' style="width:93px;height:74.8px">
+                        <img id="img_src_4" src="{% static 'icons/day/in/كتاب.svg' %}" />
+                    </div><!-- ./svg -->
+                    <p>فقرة من كتاب اليوم</p>
+                </div>
+            </div><!-- ./item -->
+
+
+
+        </div><!-- ./taps -->
+
+
+
+        <!-- ./dailydata -->
+        <div class=' mg-bot dailydata  '>
+            <p id="daily_tap_1" class="daily_tap fs-mh">
+                {{data.daily.aya|default:"إِنَّا أَنْزَلْنَاهُ قُرْآنًا عَرَبِيًّا لَعَلَّكُمْ تَعْقِلُونَ"}}
+            </p>
+            <p id="daily_tap_2" class="daily_tap fs-mh">
+                {{data.daily.hadeth|default:" إنما الأعمال بالنيّات ، وإنما لكل امريء مانوى ، فمن كانت هجرته إلى الله ورسوله ، فهجرته إلى الله ورسوله ، ومن كانت هجرته لدنيا يصيبها ، أو امرأة ينكحها ، فهجرته إلى ما هاجر إليه"}}
+            </p>
+
+            <p id="daily_tap_3" class="daily_tap fs-mh"> {{data.daily.fatwa|default:"فتوى اليوم "}}</p>
+
+            <p id="daily_tap_4" class="daily_tap fs-mh">{{data.daily.part_of_book|default:" فقره من كتاب"}}</p>
+
+        </div><!-- ./dailydata -->
+    </div><!-- ./container -->
+</div>
+<!--  ---------------------------------------end ./daily--------------------------------------- -->
+
+{% comment %} old is gold  {% endcomment %}
+<!--  ---------------------------------------start ./go-quran--------------------------------------- -->
+<div class="combine-goquran-our-apps  mg-bot">
+
+    <div class="container">
+    {% comment %} <div class='d-flex flex-md-row flex-sm-column   justify-content-between  '> {% endcomment %}
+    <div class='row'>
+
+        <div class='our-apps  rtl ar-text    col-md-6'>
+        
+            <!-- ./content -->
+            <div class=''>
+                
+                <p class="header-title text-center">تطبيقنا</p>
+                <div class="  fw-n fs-n">
+                    <div class=" ">
+                        <!-- ./innder-conatainer -->
+                        <div class='inner-container'>
+    
+                            <p> متاح الآن تطبيق للهاتف المحمول يحتوى على جميع ملفات الشيخ ياسين رشدى رحمه الله
+                                صوت
+                                وصورة</p>
+                        </div><!-- ./innder-conatainer -->
+                        <!-- ./links -->
+                        <div class="img-wrap    d-flex justify-content-between align-content-center align-items-center flex-md-l-column-reverse  ">   
+                              <div class='links  text-center-md-l '>
+                            <!-- ./item -->
+                            <a class='item' href='{{info.app_store_link|default:"#"}}'>
+    
+                                <p class="el fs-mh">لتحميل التطبيق لنظام IOS</p>
+                                <img class="el" src="{% static 'image/app-store.png' %}" alt="">
+                            </a><!-- ./item -->
+                            <!-- ./item -->
+                            <a class='item' href='{{info.google_play_link|default:"#"}}'>
+    
+                                <p class="el fs-mh">لتحميل التطبيق لنظام Android</p>
+                                <img class="el" src="{% static 'image/playstore.png' %}" alt="">
+                            </a><!-- ./item -->
+    
+                        </div><!-- ./links -->
+
+                                                  
+                            <div class='graph-size   '>       
+                            
+                                
+                                <div class='img'>
+                                    <img src="{% static 'image/iphone-with-background.svg' %}" alt="">
+                                </div><!-- ./img -->
+                            </div><!-- ./graph-size -->
+                        </div>
+
+                    </div>
+               
+                </div><!-- ./content -->
+            </div>
+        
+    </div><!-- ./container -->
+    <div class='go-quran  col-md-6'>
+            <!-- ./content -->
+            <p class="header-title  ">المصحف الإلكترونى</p>
+            <div class='content'>
+                <div class='press-her'>
+                    <a  class = "fw-n fs-mh" href="{% url 'base:read_quran' %}">
+                        اضغط لتصفح المصحف
+                    </a>
+                </div><!-- ./press_her -->
+            </div><!-- ./content -->
+    
+    
+            <!-- ./press_her -->
+            
+        </div><!-- ./go-quran -->
+        <!--  ---------------------------------------end ./go-quran--------------------------------------- -->
+    
+    <!--  ---------------------------------------start ./our-apps--------------------------------------- -->
+    
+    
+    </div><!-- ./our-apps -->
+</div></div>
+{% comment %} 
+ <div class='go-quran mg-bot mg-top'>
+    <div class='    mg-top'>
+        <!-- ./content -->
+        <p class="header-title mg-top">المصحف الإلكترونى</p>
+        <div class='content'>
+            <div class='press-her'>
+                <a href="{% url 'base:read_quran' %}">
+                    اضغط لتصفح المصحف
+                </a>
+            </div><!-- ./press_her -->
+        </div><!-- ./content -->
+
+
+        <!-- ./press_her -->
+        
+    </div><!-- ./container -->
+</div><!-- ./go-quran -->
+<!--  ---------------------------------------end ./go-quran--------------------------------------- -->
+
+<!--  ---------------------------------------start ./our-apps--------------------------------------- -->
+
+<div class='our-apps  rtl ar-text mg-bot '>
+    <div class='container'>
+        <!-- ./content -->
+        <div class='   '>
+            
+            <p class="header-title">تطبيقنا</p>
+            <div class="row fw-n fs-n">
+                <div class="col-md-8 col-xs-12  ">
+                    <!-- ./innder-conatainer -->
+                    <div class='inner-container'>
+
+                        <p> متاح الآن تطبيق للهاتف المحمول يحتوى على جميع ملفات الشيخ ياسين رشدى رحمه الله
+                            صوت
+                            وصورة</p>
+                    </div><!-- ./innder-conatainer -->
+                    <!-- ./links -->
+                    <div class='links mg-top'>
+                        <!-- ./item -->
+                        <div class='item'>
+
+                            <p class="el">لتحميل التطبيق لنظام IOS</p>
+                            <img class="el" src="{% static 'image/app-store.png' %}" alt="">
+                        </div><!-- ./item -->
+                        <!-- ./item -->
+                        <div class='item'>
+
+                            <p class="el">لتحميل التطبيق لنظام Android</p>
+                            <img class="el" src="{% static 'image/playstore.png' %}" alt="">
+                        </div><!-- ./item -->
+
+                    </div><!-- ./links -->
+                </div>
+                <div class="img-wrap col-md-4 col-xs-12 ">
+                    
+                    <!-- ./graph-size -->
+                    <div class='graph-size'>
+
+                        <!-- ./background -->
+                        <!-- <div class='background'> </div>
+                        <div class='background '> </div> -->
+
+
+                        <!-- ./img -->
+                        <div class='img'>
+                            <img src="{% static 'image/iphone-with-background.svg' %}" alt="">
+                        </div><!-- ./img -->
+                    </div><!-- ./graph-size -->
+                </div>
+            </div><!-- ./content -->
+        </div>
+    </div><!-- ./container -->
+</div><!-- ./our-apps -->
+ {% endcomment %}
+<!--  ---------------------------------------end ./our-apps--------------------------------------- -->
+{% comment %}old is gold  {% endcomment %}
+{% comment %}prayer  {% endcomment %}
+
+{% comment %} <div class='choose   active col-md-6' role="button"  id="alex-city" value="alex" onclick="get_prayer_by_city('{% url "base:prayer_city"  "Alexandria" %}' , 'الأسكندرية '  ,'alex'  , '{% static "icons/prayer" %}')"> {% endcomment %}
+{% comment %}
+    
+
+<!-- ---------------------------------------./prayer_timings ----------------------------------------->
+<div class='prayer_timings mg-top mg-bot'>
+    <div class='container  '>
+        
+        <p class="header-title text-center">مواقيت الصلاة</p>
+
+        <!-- ./content -->
+        <div class='warper fs-b'>
+            <div class='item-lista item-lista-choose  d-flex flex-wrap justify-content-between' id = 'id= 'prayer_timings_lista_group_3>
+                <!-- ./item -->
+
+
+               
+            
+                <div class='choose main-border  active  col-md-5' role="button"  id="alex-city" value="alex" onclick="get_prayer_by_city('https://api.pray.zone/v2/times/today.json?city=Alexandria'  , 'الأسكندرية '  ,'alex'  , '{% static "icons/prayer" %}')">
+                    <img  id="alex-img" src = "{% static 'icons/prayer/active/alex.png' %}">
+                    <p class="mb-0 ">   الصلاة بتوقيت     <span>الأسكندرية </span>   </p>
+                </div><!-- ./item -->
+                <div class='choose   main-border   col-md-5' role="button"  id="abu-dhabi-city" value="abu-dhabi-city"  onclick="get_prayer_by_city('https://api.pray.zone/v2/times/today.json?city=abu-dhabi', 'ابو ظبي' ,'abu-dhabi' , '{% static "icons/prayer" %}')" >
+                    <img  id="abu-dhabi-img" src = "{% static 'icons/prayer/inactive/abu-dhabi.png' %}">
+                    <p class="mb-0 ">   الصلاة بتوقيت   <span>ابو ظبى </span>   </p>
+
+                </div><!-- ./item -->
+
+                <div class='choose  main-border  col-md-5' role="button" id="mecca-city"  value="mecca" onclick="get_prayer_by_city('https://api.pray.zone/v2/times/today.json?city=mecca' , 'مكة المكرمة' ,'mecca'  , '{% static "icons/prayer" %}' )">
+                    <img id="mecca-img" src = "{% static 'icons/prayer/inactive/mecca.png' %}">
+                    <p class=" mb-0">   الصلاة بتوقيت     <span>مكة المكرمة </span>   </p>
+                 
+                </div><!-- ./item -->
+                <div class='choose  main-border col-md-5' role="button"    id="toronto-city" value="toronto"  onclick="get_prayer_by_city('https://api.pray.zone/v2/times/today.json?city=toronto'  , 'كندا تورنتو' ,'toronto'   , '{% static "icons/prayer" %}')" >
+                    <img id="toronto-img" src = "{% static 'icons/prayer/inactive/toronto.png' %}">
+                    <p class="mb-0">   الصلاة بتوقيت  <span> تورنتو</span>      </p>
+                 
+                </div><!-- ./item -->
+                
+                
+            </div><!-- ./item-lista -->
+
+            
+            <!-- ./item-lista -->
+            <div class='item-lista' id= 'prayer_timings_lista_group_1'>
+                <!-- ./item -->
+                <div class='item p-center-ver'>
+                    <p class="c-center-ver" id="prayer_Fajr">صلاة الفجر <span>{{data.pray_data.Alexandria.Fajr}} </span>بتوقيت الإسكندرية
+                    </p>
+
+                </div><!-- ./item -->
+                <div class='item p-center-ver'>
+                    <p class="c-center-ver" id="prayer_Sunrise">  الشروق <span>{{data.pray_data.Alexandria.Sunrise}} </span>بتوقيت الإسكندرية
+                    </p>
+
+                </div><!-- ./item -->
+                <div class='item p-center-ver'>
+                    
+                    <p class="c-center-ver" id="prayer_Dhuhr">صلاة الظهر <span>{{data.pray_data.Alexandria.Dhuhr}} </span>بتوقيت الإسكندرية </p>
+
+                </div><!-- ./item -->
+            </div><!-- ./item-lista -->
+        
+            <div class='item-lista' id= 'prayer_timings_lista_group_2'>
+                <!-- ./item -->
+                <div class='item p-center-ver'>
+                    <p class="c-center-ver" id="prayer_Asr">صلاة العصر <span>{{data.pray_data.Alexandria.Asr}} </span> بتوقيت الإسكندرية   </p>
+
+                </div><!-- ./item -->
+                <div class='item p-center-ver'>
+                    <p class="c-center-ver" id="prayer_Maghrib">صلاة المغرب <span>{{data.pray_data.Alexandria.Maghrib}} </span> بتوقيت الإسكندرية
+                    </p>
+
+                </div><!-- ./item -->
+                <div class='item p-center-ver'>
+                    <p class="c-center-ver" id="prayer_Isha">صلاة العشاء <span>{{data.pray_data.Alexandria.Isha}} </span> بتوقيت الإسكندرية  </p>
+
+                </div><!-- ./item -->
+
+                
+            </div><!-- ./item-lista -->
+
+             
+          
+
+
+        </div><!-- ./content -->
+        <!-- ./other-dates -->
+        <div class='other-dates mg-top  mg-bot'>
+
+        </div><!-- ./other-dates -->
+    </div><!-- ./container -->
+</div>
+<!----------------------------------------- ./prayer_timings ----------------------------------------->
+{% endcomment %}
+    
+{% comment %}prayer  {% endcomment %}
+
+{% endblock content %}
+
+
+{% block load_more_js %}
+<script type="text/javascript" src="{% static 'js/home.js' %}"></script>
+
+{% endblock load_more_js %}

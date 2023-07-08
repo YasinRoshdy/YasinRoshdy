@@ -1,0 +1,40 @@
+{% extends 'base.html'      %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+{{page.title}}
+{% endblock title %}
+{% block extra_css %}
+
+<link href="{% static 'css/about_us.css' %}" rel="stylesheet" />
+
+{% endblock extra_css %}
+{% block content %}
+
+<!-- ./container -->
+<!-- ./about_us -->
+
+<div class='privacy   mg-bot ' dir="rtl">
+    
+        <div class="alert header-dark mg-bot" role="alert">
+            <div class='container d-flex align-content-center align-items-center justify-content-rigth '>
+                {% include 'ui/back/back_btn.html' %}
+                {% translate "privacy policy" %}
+            </div><!-- ./container -->
+    
+        </div>
+    
+        <div class="container data">
+       
+           <div class = "text media-title" style= " {% if policy %}text-align: start;{% else %}text-align: center;{% endif %}" >
+               <p>{{policy|default:" غير متوفر"}} </p>
+           </div>
+           
+                 
+        </div>
+        
+ 
+     
+</div><!-- ./about_us -->
+{% endblock content %}

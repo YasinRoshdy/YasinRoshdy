@@ -1,0 +1,27 @@
+/* l mean less */
+/* g mean less */
+/* meduim @media (min-width:768px) */
+@media (max-width:768px) {
+    /* meduim and less */
+
+    .flex-md-l-column-reverse {
+        flex-direction: column-reverse;
+    }
+
+    .text-center-md-l {
+        text-align: center !important;
+    }
+    .flex-md-l-column{
+        flex-direction: column!important;
+    }
+    .my-md-2{
+        margin-top:.5rem!important;margin-bottom:.5rem!important
+    }
+    .flex-l-sm-row{
+        flex-direction: row!important;
+        
+    }
+}
+@media (min-width:768px) {
+    
+}

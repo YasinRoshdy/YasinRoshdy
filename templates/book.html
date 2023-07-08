@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+{{page.title}}
+{% endblock title %}
+{% block extra_css %}
+
+<link href="{% static 'css/books.css' %}" rel="stylesheet" />
+    <style>
+    .text {
+    font-weight: 600 !important;
+font-size: large !important;
+
+}
+    .text-data {
+        font-weight: 500 !important;
+font-size: medium !important;
+color: var(--main-color) !important;
+    }
+    </style>
+
+{% endblock extra_css %}
+{% block content %}
+
+
+<!-- ./book -->
+<div class='book mg-bot' dir="rtl">
+    <div class="alert header-dark" role="alert">
+        <div class='container d-flex align-content-center align-items-center justify-content-rigth  '>
+            <!-- <div class='container'>
+            <a href="{% url 'base:books' %}">الكتب</a> / {{book.title}}
+        </div> -->
+        {% include 'ui/back/back_btn.html' %}
+            <div>
+                <a href="{% url 'base:books' %}">{% translate "books and articles" %}    </a>
+                {% if book.type == "book" %}
+                / {% translate "book" %}
+                {% else %}
+                / {% translate "artical" %}
+            
+                {% endif %}
+                   {{book.title}}
+            </div>
+        </div>
+        <!-- ./container -->
+    </div>
+    <div class='container'>
+
+        <div class='row content'>
+            <div class="col-md-3 col-sm-12 text-center">
+                {% static  'image/logo.png' as book_cover  %}
+                <img class="fluid img-thumbnail  " style= "max-height: 300px;" src="{{ book.cover.url|default:book_cover }}" alt="">
+
+            </div>
+
+            <div class="col-md-5 col-sm-12   text-md-end text-center     names">
+
+                
+
+                <p> العنوان 
+                 
+                {% translate book.type as title %}
+                
+               
+                 : <span class="font-weight-bold">{{book.title}}</span></p>
+                
+                {% if  book.page_count %}
+                    
+                <p>عدد الصفحات : <span class="font-weight-bold">{{book.page_count}}</span> </p>
+                {% endif %}
+                    
+                <p> حجم الملف : <span class="font-weight-bold">{{book.size}}</span> </p>
+                <p>نوع الملف : <span class="font-weight-bold">
+                    {% if "pdf" in book.file.mime_type %}
+                        pdf
+                    {% else %}
+                    {{book.file.mime_type}}
+
+                    {% endif %}
+                
+                </span> </p>
+
+
+
+
+                {% if book.file == null  %}
+                <span> لم يتم تحميل الملفات بعد</span>
+                {% else %}
+
+
+
+
+                <div class='d-flex flex-md-l-column my-md-2 justify-content-center align-items-center'>
+                    <a class="btn btn-secondary btn-move my-md-2 mx-md-2" style= 'max-width: fit-content;' href="{{ book.file.url}}" download>تحميل ال{{title}}</a>
+                    <a class="btn btn-secondary  btn-move my-md-2 mx-md-2" style= 'max-width: fit-content;' href="{{ book.file.url}}" target="_blank">تصفح ال{{title}}</a>
+                </div>
+                {% endif %}
+            </div>
+            <!-- ./names -->
+
+
+            <div class="book-list col-md-8 row top-buffer">
+                {% for book in books %}
+                <div class="col-md-4 col-xm-6">
+
+                    <img class="fluid img-thumbnail" src="{{ book.cover.url|default:book_cover }}" alt="">
+                </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+
+        </div><!-- ./content -->
+    </div><!-- ./container -->
+
+</div><!-- ./book -->
+    <div class="row container" style="margin: 0 auto !important;">
+        <div class="col-lg-12 d-flex justify-content-center" dir = rtl>
+            <table class="table table-bordered table-responsive">
+                <tbody>
+                    <!-- <tr class="table-primary text-center">
+                        <td class="text">فهرس الكتاب</td>
+                        <td class="text">صفحة</td>
+                        <td class="text">رابط</td>
+                    </tr> --->
+                    {% for res in search_result %}
+                        <tr>
+                            <td class="text-data">{{ res.key }}</td>
+                            <td class="text-data text-center">
+                                <a class="text-data" href="{{ book.file.url }}#page={{ res.page }}" target="_blank">
+                                    {{ res.page }}
+                                </a></td>
+                            <td class="text-data text-center">
+                                <a class="text-data" href="{{ book.file.url }}#page={{ res.page }}" target="_blank">
+                                    تصفح
+                                </a>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock content %}

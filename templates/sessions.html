@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+{{page.title}}
+{% endblock title %}
+{% block extra_css %}
+
+<link href="{% static 'css/general.css' %}" rel="stylesheet" />
+<link href="{% static 'css/saheh.css' %}" rel="stylesheet" />
+
+{% endblock extra_css %}
+{% block content %}
+<!-- start saheh -->
+<div class="other_science mg-bot" dir="rtl">
+    <div class="alert header-dark">
+        <div class='container d-flex align-content-center align-items-center justify-content-rigth '>
+            {% include 'ui/back/back_btn.html' %}
+            <a href={% url 'base:sessions' %}>{{page.main_header_title }}</a>
+            {% if type  != None %}
+            &nbsp;/&nbsp;
+            {% for el in session_type_list  %}
+            {% if type == el.type %}
+            <a href={% url 'base:sessions_type' type %}> {{el.name}} </a>
+
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+
+            {% if category  != None %}
+            &nbsp;/&nbsp;
+         
+            <a href={% url 'base:sessions_category' category.type category.id %}> {{category.name}} </a>
+
+          
+            {% endif %}
+
+
+
+
+        </div><!-- ./container -->
+    </div>
+
+    <div class='container'>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 ">
+                <div class='side_bar'>
+                    <div id="TogglerListClick" class='item-list'>
+                        <p class=" header-dark head sider_curser">{{page.sub_title}}</p>
+                        <div   class='TogglerList bg-border-side_bar'>
+
+                            {% for type_item in session_type_list  %}
+                            {% if  type  == type_item.type %}
+                            <a    class="item  pb-2 pt-2 selc-active fw-b   list-group-item" href="#">{{type_item.name}}</a>
+
+                            {% for cat   in   categorys %}
+                           
+                            <a style="padding: 0.5rem 1rem!important;" class=" pb-1 pt-1  item fs-b   {% if cat.id == category.id %} selc-active {% else %}list-group-item selc-not-active {% endif %} " 
+                            {% if cat.id != category.id  %} href="{% url 'base:sessions_category' type=cat.type  category=cat.id %}"{%endif%} 
+                            {% comment %} id='{% if cat.id == category.id  %}TogglerListClick2{% endif %}'  {% endcomment %}
+                            >  {{cat.name}}</a>
+
+                            {% endfor %}
+                            
+                            {% endif %}
+                            {% endfor %}
+                    </div><!-- ./item-list -->
+                </div>
+            </div>
+
+                <!-- ./item-list -->
+            </div>
+            <div class="subject_list col-lg-9 col-md-8 mt-3 mt-md-0">
+
+                {% if data != None %}
+
+                <div class='subject-title'>
+                    <p class="active">{{subject.subjects}}</p>
+
+                </div><!-- ./ -->
+
+
+                {% for item  in page_obj  %}
+
+                <div class="subject-item ">
+                    <p> {{item.title}} </p>
+
+                     
+
+                    <div class='imgs d-flex align-items-center'  >
+                        <a href="{% url 'base:session_media_video' item.id %}" class='mx-2'>
+                            <div class="img">
+                                <img src="{% static 'icons/play.jpg' %}" alt="">
+                            </div>
+                        </a>
+
+                   
+                        <a href="{{item.file.url}}" download=""   >
+                            <div class="img">
+                                <img src="{% static 'icons/save.png' %}" alt="">
+                            </div>
+                        </a>
+                    </div><!-- ./imgs -->
+
+                </div> {% endfor %}
+
+                {% endif %}
+                  
+                <div class="pagination  mg-top mg-bot text-center">
+
+                    <span class="step-links">
+                        <!-- 
+                        {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+        
+                        <span class="current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        </span>
+        
+                        {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                        <div></div>
+                        <br> -->
+                        {% if page_obj.number !=  1   %}
+                        
+                        {%endif%}
+
+                        {% with ''|center:page_obj.paginator.num_pages as range %}
+                        {% for _ in range %}
+
+                        {% if page_obj.number ==  forloop.counter   %}
+                        <!-- |add:1 -->
+
+                        <a class="spaner active">{{ forloop.counter }}</a>
+                        {% else %}
+
+
+                        <a href='?page={{forloop.counter}}' class=" spaner">{{ forloop.counter }}</a>
+                        {% endif %}
+
+
+
+                        {% endfor %}
+                        {% endwith %}
+                        {% if page_obj.number !=  page_obj.paginator.num_pages   %}
+                        <a href="?page={{page_obj.paginator.num_pages}}" class="spaner">
+                            <div class="general-arrow">
+                                <svg style="transform: rotate(90deg);" aria-hidden="true" focusable="False"
+                                    data-prefix="fas" data-icon="angle-down"
+                                    class="svg-inline--fa fa-angle-down fa-w-10" role="img"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                                    <path fill="currentColor"
+                                        d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </a>
+
+
+                    </span>
+
+
+                </div>{% endif %}
+            </div>
+
+        </div>
+
+    </div><!-- ./container -->
+
+
+
+</div>
+<!-- end saheh -->
+{% endblock content %}
+
+{% block load_more_js %}
+<script type="text/javascript" src="{% static 'js/saheh0.js' %}"></script>
+{% endblock load_more_js %}

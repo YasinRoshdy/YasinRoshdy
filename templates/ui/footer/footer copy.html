@@ -1,0 +1,131 @@
+{% load static %}
+{% load i18n %}
+<!----------------------------------------- start footer ----------------------------------------->
+<footer>
+  <!-- ./site-map wrap-->
+  <div class="site-map-wrap">
+    <div class="container site-map">
+      <div class="move">
+        <div class="item">
+          <ul>
+            <li><a  class="active fw-bolder" href="{% url 'base:home' %}"> الرئيسية</a></li>
+            <li><a  href="{% url 'base:about_us' %}" > نبذة عنا</a></li>
+            <li><a  href="{% url 'base:home' %}" > مواقيت الصلاة</a></li>
+            <li><a  href="{% url 'base:related_site' %}" > مواقع ذات صلة</a></li>
+          
+          </ul>
+        </div>
+        <div class="item">
+          <ul>
+            <li><a  class="active  fw-bolder" href="{% url 'base:quran' %}" > القرآن الكريم</a></li>
+            <li><a  href="{% url 'base:quran' %}" > السور مكتوبة مفسرة</a></li>
+            <li><a  href="{% url 'base:quran' %}" > سور القرآن - صوت</a></li>
+            <li><a  href="{% url 'base:quran' %}" > سور القرآن - فيديو</a></li>
+          </ul>
+        </div>
+        <div class="item">
+          <ul>
+            <li><a  class="active  fw-bolder" href="{% url 'base:saheh' %}" > الحديث الشريف</a></li>
+            <li><a  href="{% url 'base:saheh' %}" > كتاب صحيح البخاري</a></li>
+            <li><a  href="{% url 'base:saheh' %}" > صحيح البخارى - صوت</a></li>
+          </ul>
+        </div>
+        <div class="item">
+          <ul>
+            <li><a  class="active  fw-bolder" href="{% url 'base:other_science' %}" > العلوم الأخرى</a></li>
+            <li><a  href="{% url 'base:other_science' %}" > صوتية</a></li>
+            <li><a  href="{% url 'base:other_science' %}" > مرئية</a></li>
+          </ul>
+        </div>
+        <div class="item">
+          <ul>
+            <li><a  class="active  fw-bolder" href="{% url 'base:books' %}" > {% translate "books and articles" %}</a></li>
+            <li><a  class="active  fw-bolder" href="{% url 'base:fatwa' %}" > الفتاوى</a></li>
+            <li><a  class="active  fw-bolder" href="{% url 'base:sessions' %}" > المجالس</a></li>
+            <li><a  class="active  fw-bolder" href="{% url 'base:callus' %}" > اتصل بنا</a></li>
+            
+          </ul>
+        </div>
+      </div>
+
+      <div class="data">
+        <div class="follow-section item">
+          <!-- ./follow-us -->
+
+          <p  class="active pt-2">تابعونا على</p>
+       
+          <div class="follow-us ">
+            <!-- ./links -->
+            <div class="links os-li">
+              <ul>
+                <li>
+                  <a href="{{info.youtube_link}}">
+                    <img src="{% static 'image/youtube.png' %}" />
+                  </a>
+                </li>
+                <li>
+                  <a href="{{info.twitter_link}}">
+                    <img src="{% static 'image/twitter_sv@2x.png' %}" />
+                  </a>
+                </li>
+                <li>
+                  <a href="{{info.instagram_link}}">
+                    <img src="{% static 'image/instagram.png' %}" />
+                  </a>
+                </li>
+                <li>
+                  <a href="{{info.facebook_link}}">
+                    <img src="{% static 'image/facebook.png' %}" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <!-- ./links -->
+          </div>
+
+          <div class="pt-5">
+            <a  style="color: white" href="{% url 'base:policy' %}" > سياسة الخصوصية</a>
+          </div>
+          <!-- ./follow-us -->
+        </div>
+        <!-- ./follow-section -->
+
+        <!-- ./visitor-counter -->
+      <div>
+        <div class="visitor-counter item">
+          <div class="text">
+            عدد الزائرين
+           
+            <span> {{info.visitor_count|default:140}}</span>
+          </div>
+        </div>
+
+
+       </div>
+        <!-- ./visitor-counter -->
+      <div></div>
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- ./container -->
+  </div>
+  <!-- ./site-map  -->
+  <!-- ./follow-section -->
+
+  <!-- start copy section  -->
+  <div class="copy ar-text">
+    <p>
+      <span class="all-rigth-text">
+        جميع الحقوق محفوظة لجمعية المواساة الإسلامية
+      </span>
+      <span class="at"> @ </span>
+      <span class="year fw-bolder">
+        2022
+        <!-- 2022 &copy; -->
+      </span>
+      <span class="shaikh-font active fw-bold"> فضيلة الشيخ ياسين رشدى </span>
+    </p>
+  </div>
+  <!-- ./copy -->
+</footer>
+<!----------------------------------------- end footer ----------------------------------------->

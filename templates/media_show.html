@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+{{page.title}}
+{% endblock title %}
+{% block extra_css %}
+
+<link href="{% static 'css/saheh.css' %}" rel="stylesheet" />
+
+{% endblock extra_css %}
+{% block content %}
+<!-- start saheh -->
+<div class="saheh mg-bot" dir="rtl">
+    <div class="alert header-dark">
+        <div class='container d-flex align-content-center align-items-center justify-content-rigth '>
+            {% include 'ui/back/back_btn.html' %}
+            <div>{{main_header_title }}</div>                
+        </div><!-- ./container -->
+    </div>
+
+    <div class='container'>
+        <div class="row">
+            <div class="col-12">
+                <!-- ./btn-rows -->
+                <div class='btn-rows text-center'>
+                    {% if not content_header == "" %}
+                        <p class="media-title mg-bot mg-top">{{content_header }}</p>
+                        
+                    {% endif %}
+                    
+                    {% if not_found  %}
+                    <!-- <div>{{content_header}}</div> -->
+                    {% else %}
+
+                    {% if media == "audio" %}
+                    <div id="audio-tafsir media" class='audio'>
+                        <audio controls>
+                            <source id="audio-tafsir-source" src="{{url}}" type="audio/mpeg">
+                        </audio>
+                    </div>
+                    {% else %}
+
+                    <div id="video-tafsir media" class='video'>
+                        <iframe width="100%" height="450px" src="{{url_youtube}}" frameborder="0"
+                            allowfullscreen></iframe>
+                        </div><!-- ./video -->
+                        {% endif %}
+                        <!-- change 20230710 -->
+                        <!-- <a class="mg-bot mg-top   btn btn-move " download href="{{url}}">{% translate 'download' %}</a> -->
+                    {% endif %}
+
+                </div><!-- ./btn-rows -->
+                <!-- ./content-place -->
+            </div>
+
+        </div>
+
+    </div><!-- ./container -->
+
+
+
+</div>
+<!-- end saheh -->
+{% endblock content %}
+
+{% block load_more_js %}
+<script type="text/javascript" src="{% static 'js/saheh0.js' %}"></script>
+{% endblock load_more_js %}

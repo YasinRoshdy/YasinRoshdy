@@ -1,0 +1,51 @@
+{% load static %}
+{% comment %} 
+input possible :
+media
+id 
+title
+onclick_play
+href_download
+
+{% endcomment %}
+<div class="d-flex">
+
+                    
+    {% if media == 'video' %}
+
+    {% else %}        
+<audio class="no-play-control" id="main-audio{{item.id}}" controls>
+    
+    <source  id="player{{item.id}}"  type="audio/mpeg">
+</audio>
+{% endif %}
+<!-- imgs -->
+
+<div class='imgs d-flex align-items-center' >
+    {% if media == 'video'  %}
+    <a  class='mx-2' href='{% url "base:quran_media_video_part"  tafsir_id=item.id %}'  >
+        <div class=" play-icon img">
+            <img id="img{{item.id}}" src="{% static 'icons/play.jpg' %}" alt="">
+        </div>
+    </a>
+    {% else %}
+    <a  class='mx-2'  onclick="play_pause_audio( '{{item.id}}','{% static 'icons/' %}' ,'{{item.file.url}}');show_text_quran( '{{item.id}}')">
+
+        <div class="play-icon img"  >
+            <img id="img{{item.id}}" src="{% static 'icons/play.jpg' %}" alt="">
+        </div>
+    </a>
+    {% endif %}
+
+
+    <!-- ../imgs -->
+
+    <!-- <div class="vl"></div> -->
+    <a href="{{item.file.url}}" download  class='mx-2'>
+        <div class="img">
+            <img src="{% static 'icons/save.png' %}" alt="">
+        </div>
+    </a>
+</div><!-- ./imgs -->
+
+</div>

@@ -1,0 +1,413 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_tags %}
+{% block title %}
+{% load i18n %}
+
+{{page.title}}
+{% endblock title %}
+{% block extra_css %}
+
+<link href="{% static 'css/general.css' %}" rel="stylesheet" />
+<link href="{% static 'css/saheh.css' %}" rel="stylesheet" />
+
+{% endblock extra_css %}
+{% block content %}
+
+{% comment %} Search form {% endcomment %}
+<div dir="rtl" class="alert header-dark mg-bot" role="alert">
+    <div class='container d-flex align-content-center align-items-center justify-content-rigth  '>
+        {% include 'ui/back/back_btn.html' %}
+        {% translate "Advaced Search" %}
+    </div><!-- ./container -->
+
+</div>
+
+<div class='container search-form'>
+<div class="row" dir="rtl">
+
+    
+  
+
+
+<div class=" col-lg-8 d-flex justify-content-center text-right mg-top  " >
+    <form method="GET" action="{% url 'base:search_results' %}" id="searchform" class="form-stacked mb-2 mt-2 mt-lg-0">
+        <div class="form-group m-2">
+            <label for=""    class="head  mb-2 ">كلمة البحث</label>
+            <div   class="input-group   ">
+                <input class=" ar-text write_her form-control " type="text" name="q" placeholder="اكتب هنا" required value="{% if query %}{{query}}{% endif %}" />
+            </div>
+            
+            <label class="  head mb-3 mt-4" for="">مجال البحث</label>
+            <br>
+           <!-- ./check_all -->
+           <div class='m-2'>
+
+               <input class=" form-check-input m-2" type="checkbox" id="checkAll" name="checkAll" {% if request.GET.mainq or request.GET.checkAll %}checked{% endif %}>
+               <label for="">تحديد الكل</label>
+            </div><!-- ./check_all -->
+
+
+            <div class="m-2 flex">
+              <span>
+                  <input   type="checkbox" name="qurancheck" class="form-check-input m-2" {% if request.GET.mainq or request.GET.qurancheck %}checked{% endif %}/>
+                  <label class = "text" for="">القران</label>
+                </span>              
+                    <select name="quran" id="quran" class="form-select   f-expand"   >
+                        <option value="" selected disabled>الكل</option>
+                        {% for sura in quran %}
+                        <option value="{{sura.id}}" >سورة {{sura.name}}</option>
+                        {% endfor %}
+                    </select>
+                 
+                 
+            </div>
+
+
+            <div class="m-2 flex">
+               <span>
+                   <input   type="checkbox" name="hadithcheck"  class="form-check-input m-2" {% if request.GET.mainq or request.GET.hadithcheck %}checked{% endif %}/>
+                   <label class = "text m-2"  for="">الحديث</label>
+                </span>
+                   <select name="hadith_book_id" id="hadith" class="form-select   f-expand">
+                    <option value="" selected disabled>الكل</option>
+                    {% for book in hadith_books %}
+                    <option value="{{book.id}}" >كتاب {{book.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="m-2 flex">
+                <span>
+
+                    <input   type="checkbox" name="bookcheck" class="form-check-input m-2" {% if request.GET.mainq or request.GET.bookcheck %}checked{% endif %}/>
+                    <label class = "text m-2"  for="">الكتب</label>
+                </span>
+                <select name="book" id="book" class="form-select   f-expand">
+                    <option value="" selected disabled>الكل</option>
+                    {% for book in books %}
+                    <option value="{{book.id}}" >كتاب {{book.title}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+          
+          
+
+            <div class="m-2">
+                <input   type="checkbox" name="fatwacheck" class="form-check-input m-2" {% if request.GET.mainq or request.GET.fatwacheck %}checked{% endif %}/>
+                <label class = "text m-2"  for="">الفتاوى</label>
+            </div>
+
+            <div class="m-2">
+                <input   type="checkbox" name="othersciencecheck" class="form-check-input m-2"  {% if request.GET.mainq or request.GET.othersciencecheck %}checked{% endif %}/>
+                <label class = "text m-2"  for="">العلوم الاخرى</label>
+            </div>
+            <div class="d-flex justify-content-center mg-bot mg-top">
+                <button class="btn btn-move  m-2" type="submit" data-loading-text="Submitting...">بحث</button>
+                <a class="btn btn-move btn-cancle m-2" href="{% url 'base:home' %}">الغاء</a>
+            </div>
+        </div>
+    </form>
+</div>
+<hr>
+{% comment %} Search results table {% endcomment %}
+<div class="row">
+    <!-- <div class="col-2"></div> -->
+    <div class="col-12 d-flex justify-content-center" dir="rtl">
+        {% if object_list.quran_results or object_list.hadith_results or object_list.book_results  or object_list.book_content_results or object_list.otherscience_results or object_list.fatwa_results %}
+            <table class="table table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <th class="head">نتائج البحث</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% comment %} loop over all sura {% endcomment %}
+                    {% if object_list.quran_results %}
+                        <tr class="table-primary text-center">
+                            <td class="text">نتائج البحث فى القران الكريم</td>
+                            <td class="text">سورة</td>
+                            <td class="text">اية</td>
+                            <td class="text">رابط</td>
+                        </tr>
+                    {% endif %}
+                    {% for object in object_list.quran_results %}
+                        {% if  object.sura_id %}
+                        <tr>
+                           
+
+                            
+                            
+                            {% for sura in quran %}
+                            {% if sura.id == object.sura_id %}
+                            
+                            <td>
+                                {% span_world object.text_without_tashkil query    %}
+                                {% comment %}
+                                {% for word in object.text_without_tashkil.split %}
+                                {% if word in query.split %}
+                                {% for qword in query.split %}
+                                {% if word == qword %}
+                                <span class="bg-warning text-dark">{{qword}}</span>
+                                {% endif %}
+                                {% endfor %}
+                                {% else %}
+                                {{word}}
+                                {% endif %}
+                                {% endfor %}
+                                {% endcomment %}
+                            </td>
+                            <td  class="text-data">
+                                سورة {{sura.name}}
+                            </td>
+                            <td  class="text-data">
+                                اية: ({{object.count}})
+                            </td>
+                            <td  class="text-data">
+                                {% for aya in ayat_tafsir %}
+                                {% if aya.sura_id == object.sura_id %}
+                                {% if object.id >= aya.aya_start_id and object.id <= aya.aya_end_id %}
+                                <a href="{% url 'base:quran_media_video_part'  aya.id %}"  >فيديو تفسير الاية</a>
+                                {% endif %}
+                                {% endif %}
+                                {% endfor %}
+                            </td>
+                            {% endif %}
+                            {% endfor %}
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% comment %} loop over all hadith {% endcomment %}
+                    {% if object_list.hadith_results %}
+                        <tr class="table-primary text-center">
+                            <td  class="text">نتائج البحث فى الحديث الشريف</td>
+                            <td class="text">كتاب</td>
+                            <td class="text"></td>
+                            <td class="text">رابط</td>
+                        </tr>
+                    {% endif %}
+                    {% for object in object_list.hadith_results %}
+                        {% for book in hadith_books %}
+                        {% if book.id == object.id %}
+                        <tr>
+                            <td class="text-data">
+
+                                {% span_world object.text_without_tashkil query    %}
+                                {% comment %}
+                                {% with          span_world object.text query        as resi    %}
+                                {% resi|safe %}
+                                {% for word in object.text.split %}
+                                {% if word in query.split %}
+                                {% for qword in query.split %}
+                                {% if word == qword %}
+                                <span class="bg-warning text-dark">{{qword}}</span>
+                                {% endif %}
+                                {% endfor %}
+                                {% else %}
+                                {{word}}
+                                {% endif %}
+                                {% endfor %}
+                                {% endcomment %}
+                            </td>
+                            <td class="text-data">
+                                كتاب {{ book.name }}
+                            </td>
+                            <td class="text-data text-center"></td>
+                            <td class="text-data text-center">
+                                <a href="{% url 'base:saheh_media_video' object.id %}">فيديو تفسير الحديث</a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+
+
+                    
+                    {% comment %} loop over all books {% endcomment %}
+                    {% if object_list.book_results %}
+                        <tr class="table-primary text-center">
+                            <td  class="text">نتائج البحث فى الكتب</td>
+                            <td  class="text">كتاب</td>
+                            <td  class="text"></td>
+                            <td  class="text">رابط</td>
+                        </tr>
+                    {% endif %}
+                    {% for object in object_list.book_results %}
+                        {% for book in books %}
+                        {% if book.id == object.id %}
+                        <tr>
+                            <td  class="text-data">
+                                {% span_world object.title  query    %}
+                                {% comment %}
+                                  
+                                {% for word in object.title.split %}
+                                {% if word in query.split %}
+                                {% for qword in query.split %}
+                                {% if word == qword %}
+                                <span class="bg-warning text-dark">{{qword}}</span>
+                                {% endif %}
+                                {% endfor %}
+                                {% else %}
+                                {{word}}
+                                {% endif %}
+                                {% endfor %}
+                                {% endcomment %}
+                            </td>
+                            <td  class="text-data">
+                                كتاب {{ book.title }}
+                            </td>
+                            <td  class="text-data text-center"></td>
+                            <td  class="text-data text-center">
+                                <a href="{% url 'base:book' book.id %}">{{ object.title }}</a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+
+
+
+                    {% comment %} loop over all books {% endcomment %}
+                    {% if object_list.book_content_results %}
+                        <tr class="table-primary text-center">
+                            <td  class="text">نتائج البحث داخل الكتب</td>
+                            <td  class="text">كتاب</td>
+                            <td  class="text">صفحة</td>
+                            <td  class="text">رابط</td>
+                        </tr>
+                    
+                    
+                     
+                    {% for object in object_list.book_content_results %}
+                   
+                        {% for book in books %}
+                        {% if book.id == object.book.id %}
+                        <tr>
+                            <td  class="text-data">
+                                {% span_world object.key  query    %}
+                               
+                            </td>
+                            <td  class="text-data">
+                                <a  href="{% url 'base:book' book.id %}"> كتاب {{ object.book.title }}</a>
+                               
+                            </td>
+                            <td  class="text-data text-center">
+
+                                <a href="{{ book.file.url }}#page={{ book.page_count }}" target="_blank">
+                                    {{object.page}}</a>
+
+                            </td>
+                            <td  class="text-data text-center">
+                                <a href="{% url 'base:book' book.id %}">تصفح</a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    {% endif %}
+
+
+
+                    {% comment %} loop over all other sciences {% endcomment %}
+                    {% if object_list.otherscience_results %}
+                        <tr class="table-primary text-center">
+                            <td  class="text">نتائج البحث فى العلوم الاخرى </td>
+                            <td  class="text">العلم</td>
+                            <td  class="text"></td>
+                            <td  class="text">رابط</td>
+                        </tr>
+                    {% endif %}
+                    {% for object in object_list.otherscience_results %}
+                        <tr>
+                            <td  class="text-data">
+                                {% span_world object.title query    %}
+                                {% comment %}
+                                  
+                                {% for word in object.title.split %}
+                                {% if word in query.split %}
+                                {% for qword in query.split %}
+                                {% if word == qword %}
+                                <span class="bg-warning text-dark">{{qword}}</span>
+                                {% endif %}
+                                {% endfor %}
+                                {% else %}
+                                {{word}}
+                                {% endif %}
+                                {% endfor %}
+                                {% endcomment %}
+                            </td>
+                            <td  class="text-data">
+                                {% for subject in othersciencesubjects %}
+                                {% if subject.id == object.subject_id %}
+                                <a href="{% url 'base:other_science_subject' object.subject_id %}">{{subject.subjects}}</a>
+                                {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td  class="text-data text-center"></td>
+                            <td  class="text-data text-center">
+                                <a href="{% url 'base:other_science_subject_video' object.id %}">فيديو عن الموضوع</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    {% comment %} loop over all fatwa {% endcomment %}
+                    {% if object_list.fatwa_results %}
+                        <tr class="table-primary text-center">
+                            <td  class="text">نتائج البحث فى الفتاوى</td>
+                            <td  class="text"></td>
+                            <td  class="text"></td>
+                            <td  class="text">رابط</td>
+                        </tr>
+                    {% endif %}
+                    {% for object in object_list.fatwa_results %}
+                        <tr>
+                            <td  class="text-data">
+                                {% span_world object.title query    %}
+                                {% comment %}
+                                {% for word in object.title.split %}
+                                {% if word in query.split %}
+                                {% for qword in query.split %}
+                                {% if word == qword %}
+                                <span class="bg-warning text-dark">{{qword}}</span>
+                                {% endif %}
+                                {% endfor %}
+                                {% else %}
+                                {{word}}
+                                {% endif %}
+                                {% endfor %}
+                                {% endcomment %}
+                                
+
+                            </td>
+                            <td  class="text-data"></td>
+                            <td  class="text-data text-center"></td>
+                            <td  class="text-data text-center">
+                                <a href="{% url 'base:fatwa_media' object.id %}">ملف صوتى للفتوى </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            لا يوجد نتائج
+        {% endif %}
+    </div>
+    <div class="col-2"></div>
+</div></div><!-- ./container -->
+</div>
+{% endblock %}
+
+{% block load_more_js %}
+<script>
+    $('#checkAll').click(function () {
+        $('input:checkbox').prop('checked', this.checked);
+    });
+
+    $("input[type=checkbox]").click(function() {
+        if (!$(this).prop("checked")) {
+          $("#checkAll").prop("checked", false);
+        }
+      });
+</script>
+{% endblock %}

@@ -1,0 +1,21 @@
+To install App
+==================
+1- extract data.rar
+run the following command in terminal:
+# docker-compose up
+
+
+if there no data created
+=========================
+run the following command in terminal:
+after run docker Compose
+1- docker exec -it web_name_container bash
+2- python manage.py makemigrations
+3- python manage.py migrate
+4- python manage.py loaddate database_dump.json
+
+then extract all files in app path
+===================================
+contect/
+media/
+data-import/

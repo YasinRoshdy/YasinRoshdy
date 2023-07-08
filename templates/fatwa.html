@@ -1,0 +1,242 @@
+{% extends 'base.html' %} 
+{% load i18n %} 
+{% load static %}
+{% load custom_tags %}
+ {% block title %}
+{{page.title}} {% endblock title %} 
+{% block extra_css %}
+<link href="{% static 'css/general.css' %}" rel="stylesheet" />
+<link href="{% static 'css/saheh.css' %}" rel="stylesheet" />
+
+{% endblock extra_css %} {% block content %}
+<!-- start fatwas -->
+<div class="fatwa mg-bot" dir="rtl">
+    <div class="alert header-dark">
+        <div class='container d-flex align-content-center align-items-center justify-content-rigth  '>
+            {% include 'ui/back/back_btn.html' %}
+            <a href={% url 'base:fatwa' %}>{% translate "Fatwas" %}</a> 
+        </div>
+        <!-- ./container -->
+    </div>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+
+                <div class='side_bar'>
+                    <div id="TogglerListClick" class='item-list'>
+                        <p class=" header-dark head sider_curser">
+                            {% translate "Fatwas" %}</p>
+                        <div   class=' bg-border-side_bar TogglerList'>
+
+                            {% for item in fatwa  %}
+                            <a onclick="scroll_to_div( '{{item.id}}','{% static 'icons/' %}' ,'{{item.file.url}}')" id="side_menu_{{item.id}}" class="side-bar-item border-bottom p-2 selc_not_active "
+                            >{{item.title}}</a>
+
+                            {% endfor %}
+                        </div><!-- ./item-list -->
+                    </div>
+
+                   
+
+
+
+                </div>
+
+                <!-- ./item-list -->
+            </div>
+            <div class="col-lg-9 col-md-8 mt-3 mt-md-0">
+  
+                {% if fatwa|length == 0 %}
+                <p class="p  mg-bot mg-top  text-center h3">{{content_header}}</p>
+                {% else %}
+                {% for item in fatwa  %}
+                <div id="a{{ item.id }}" class="item">
+                    <div class="subject-item">
+                        <p> {%slice_text item.title %}  </p>
+                        <div class="base-media">
+                       
+                            
+    
+                        {% if media == 'video' %}
+    
+                        {% else %}
+                        <div  class='media_parent'>
+
+                            <audio class="no-play-control" id="main-audio{{item.id}}" controls preload="none" style="width:100%;">
+                                <source   id="player{{item.id}}" type="audio/mpeg">
+                                {% comment %} <source   id="player{{item.id}}" type="audio/ogg"> {% endcomment %}
+                            </audio>
+                        </div>
+                        {% endif %}
+                        <!-- imgs -->
+                        <div class='imgs d-flex align-items-center'>
+                            {% if media == 'video'  %}
+                            <a href='{% url "base:quran_media_video_part"  tafsir_id=item.id %}'  class='mx-2'>
+                                <div class=" play-icon img">
+                                    <img id="img{{item.id}}" src="{% static 'icons/play.jpg' %}" alt="">
+                                </div>
+                            </a>
+                            {% else %}
+                            
+                            <a onclick="play_pause_audio( '{{item.id}}','{% static 'icons/' %}' ,'{{item.file.url}}')"  class='mx-2'>
+    
+                                <div class="play-icon img"  >
+                                    <img id="img{{item.id}}" src="{% static 'icons/play.jpg' %}" alt="">
+                                </div>
+                            </a>
+                        
+                            {% endif %}
+    
+    
+                            <!-- ../imgs -->
+    
+                            <!-- <div class="vl"></div> -->
+                            <!-- change 20230710 -->
+                            <!-- <a href="{{item.file.url}}" download  >
+                                <div class="img">
+                                    <img src="{% static 'icons/save.png' %}" alt="">
+                                </div>
+                            </a> -->
+                        </div><!-- ./imgs -->
+                    </div>
+                    </div>
+                </div>
+                {% endfor %}
+    
+                {% endif %}
+
+            {% comment  %}
+           
+            {% if page_obj.count == 0 %}
+            <p class="p  mg-bot mg-top  text-center h3">{{content_header}}</p>
+            {% else %}
+            {% for item in page_obj  %}
+            <div class="   ">
+                <div class="item">
+                    <p> {% slice_text  item.title %}  </p>
+                    <div class="base-media">
+                   
+                        
+
+                    {% if media == 'video' %}
+
+                    {% else %}
+                    <audio class="no-play-control" id="main-audio{{item.id}}" controls>
+                        <source   id="player{{item.id}}" type="audio/mpeg">
+                    </audio>
+                    {% endif %}
+                    <!-- imgs -->
+
+                    <div class='imgs'>
+                        {% if media == 'video'  %}
+                        <a href='{% url "base:quran_media_video_part"  tafsir_id=item.id %}'>
+                            <div class=" play-icon img">
+                                <img id="img{{item.id}}" src="{% static 'icons/play.jpg' %}" alt="">
+                            </div>
+                        </a>
+                        {% else %}
+                        <a onclick="play_pause_audio( '{{item.id}}','{% static 'icons/' %}' , '{{item.file.url}}' )">
+
+                            <div class="play-icon img"  >
+                                <img id="img{{item.id}}" src="{% static 'icons/play.jpg' %}" alt="">
+                            </div>
+                        </a>
+                        {% endif %}
+
+
+                        <!-- ../imgs -->
+
+                        <!-- <div class="vl"></div> -->
+                        <a href="{{item.file.url}}" download>
+                            <div class="img">
+                                <img src="{% static 'icons/save.png' %}" alt="">
+                            </div>
+                        </a>
+                    </div><!-- ./imgs -->
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% endif %}
+            {% endcomment %}
+        </div>
+    </div>
+
+        {% if page_obj.paginator.num_pages > 1  %}
+        <div class="pagination  mg-top mg-bot text-center">
+
+            <span class="step-links">
+                <!-- 
+                {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+                <div></div>
+                <br> -->
+                {% if page_obj.number !=  1   %}
+                <a href="?page={{1}}" class="spaner">
+                    <div class="general-arrow">
+                        <svg style="transform: rotate(270deg);" aria-hidden="true" focusable="False" data-prefix="fas"
+                            data-icon="angle-down" class="svg-inline--fa fa-angle-down fa-w-10" role="img"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                            <path fill="currentColor"
+                                d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z">
+                            </path>
+                        </svg>
+                    </div>
+                </a>
+                {%endif%}
+
+                {% with ''|center:page_obj.paginator.num_pages as range %}
+                {% for _ in range %}
+
+                {% if page_obj.number ==  forloop.counter   %}
+                <!-- |add:1 -->
+
+                <a class="spaner active">{{ forloop.counter }}</a>
+                {% else %}
+
+
+                <a href='?page={{forloop.counter}}' class=" spaner">{{ forloop.counter }}</a>
+                {% endif %}
+
+
+
+                {% endfor %}
+                {% endwith %}
+                {% if page_obj.number !=  page_obj.paginator.num_pages   %}
+                <a href="?page={{page_obj.paginator.num_pages}}" class="spaner">
+                    <div class="general-arrow">
+                        <svg style="transform: rotate(90deg);" aria-hidden="true" focusable="False" data-prefix="fas"
+                            data-icon="angle-down" class="svg-inline--fa fa-angle-down fa-w-10" role="img"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                            <path fill="currentColor"
+                                d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z">
+                            </path>
+                        </svg>
+                    </div>
+                </a>
+                {%endif%}
+
+
+            </span>
+
+
+        </div>{% endif %}
+    </div>
+</div>
+{% endblock content %} {% block load_more_js %}
+<script type="text/javascript" src="{% static 'js/saheh0.js' %}"></script>
+
+{% endblock load_more_js %}

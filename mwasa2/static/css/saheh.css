@@ -1,0 +1,653 @@
+
+
+.saheh .header-dark {
+    background-color: var(--main-color) !important;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+
+}
+
+.saheh .media-title {
+    color: var(--main-color);
+    background-color: #fff;
+    font-size: 14px;
+    line-height: 30px;
+    border: 1px solid #B7BCC5;
+    padding: 16px;
+    border-radius: 6px;
+}
+
+.chapters .header-dark {
+
+    font-size: 18px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.quran .quran-text,
+.hadith-text {
+    /* color: var(--main-color);
+    line-height: 48px;
+    font-size: 24px;
+    font-family: quran_font;
+    text-align: justify;
+
+
+    font-family: quran_font;
+    text-align: justify;
+
+    line-height: 60px;
+    font-size: 30px;
+    padding: 8px;
+     */
+    color: var(--main-color);
+    font-size: 14px !important;
+    font-family: quran_font;
+    text-align: justify;
+    font-family: quran_font;
+    text-align: justify;
+    padding: 8px;
+    font-weight: initial;
+}
+.hadith-text p {
+    margin-bottom: 0;
+}
+.contact-info {
+    background-color: #fafafa;
+    text-align: center;
+    display: block;
+    border: solid 2px #011132;
+    border-radius: 50px;
+    padding: 35px 15px;
+}
+.contact-info h2 {
+    text-align: center;
+    background-color: #ab1f57;
+    display: inline-block;
+    color: #fff;
+    font-size: 22px;
+    line-height: 40px;
+    padding: 15px 35px;
+    border-radius: 50px;
+    margin-bottom: 35px;
+}
+.contact-info td, .contact-info th, .contact-info-mobile td, .contact-info-mobile th {
+    border: none;
+    box-shadow: none;
+}
+.table>:not(:first-child) {
+    border: none;
+}
+.contact-info-mobile {
+    display: none;
+}
+.contact-info-mobile {
+    background-color: #fafafa;
+    border: solid 2px #011132;
+    border-radius: 50px;
+    padding: 25px 15px;
+}
+.contact-info-mobile h2 {
+    text-align: center;
+    background-color: #ab1f57;
+    display: inline-block;
+    color: #fff;
+    font-size: 15px;
+    line-height: 40px;
+    padding: 15px 5px;
+    border-radius: 50px;
+    width: 100%;
+    margin-bottom: 35px;
+}
+@media only screen and (max-width: 767px){
+    .contact-info {
+        display: none;
+    }
+    .contact-info-mobile {
+        display: block;
+    }
+}
+.selc-active,
+.selc_not_active {
+    border: 1px solid var(--border-color) !important
+}
+.selc-active-had,
+.selc-active,
+.selc-not-active-had:hover,
+.selc_not_active:hover {
+    background-color: var(--active-color) !important;
+    color: white !important;
+}
+
+.contact-info {
+    background-color: #fafafa;
+    text-align: center;
+    display: block;
+    border: solid 2px #011132;
+    border-radius: 50px;
+    padding: 35px 15px;
+}
+.contact-info h2 {
+    text-align: center;
+    background-color: #ab1f57;
+    display: inline-block;
+    color: #fff;
+    font-size: 22px;
+    line-height: 40px;
+    padding: 15px 35px;
+    border-radius: 50px;
+    margin-bottom: 35px;
+}
+.contact-info td a, .contact-info-mobile td a {
+    color: #212529;
+}
+.contact-info td, .contact-info th, .contact-info-mobile td, .contact-info-mobile th {
+    border: none;
+    box-shadow: none;
+}
+.table>:not(:first-child) {
+    border: none;
+}
+.contact-info-mobile {
+    display: none;
+}
+.contact-info-mobile {
+    background-color: #fafafa;
+    border: solid 2px #011132;
+    border-radius: 50px;
+    padding: 25px 15px;
+}
+.contact-info-mobile h2 {
+    text-align: center;
+    background-color: #ab1f57;
+    display: inline-block;
+    color: #fff;
+    font-size: 15px;
+    line-height: 40px;
+    padding: 15px 5px;
+    border-radius: 50px;
+    width: 100%;
+    margin-bottom: 35px;
+}
+@media only screen and (max-width: 767px){
+    .contact-info {
+        display: none;
+    }
+    .contact-info-mobile {
+        display: block;
+    }
+}
+.table .table-primary, .table .table-primary td {
+    background-color: var(--active-color) !important;
+    border-color: var(--active-color) !important;
+}
+.table .table-primary {
+    color: #fff !important;
+}
+.quran .quran-text span {
+    color: var(--active-color);
+    font-family: ui-sans-serif;
+}
+
+.quran .quran-text span:after,
+.quran .quran-text span:before {
+    /* content: "\00a0 "; */
+
+}
+
+.quran .btn-rows {
+    /* min-height: 8%; */
+    margin: 23px 0;
+}
+
+.saheh .btn-rows .audio {
+    margin-top: 10px;
+}
+
+.btn {
+    min-width: 139px;
+    line-height: 27px;
+    font-size: 12px;
+    font-weight: normal !important;
+    border: none;
+}
+
+.saheh .chapters .chapter-header {
+    cursor: pointer;
+}
+
+/* .saheh .content-place .text-source {
+    overflow: scroll;
+} */
+
+.saheh .list-group .arrow {
+    display: inline-block;
+    width: 20px;
+    padding: 2px;
+    margin-top: 5px;
+}
+
+.saheh .mylist-group {
+    max-height: 500px;
+}
+
+
+.just-padding {
+    padding: 15px;
+}
+
+.list-group.list-group-root {
+    padding: 0;
+    overflow: auto;
+    max-height: 400px;
+
+    /* min-height: 600px; */
+    /* height: 90%;
+    max-height: 900px; */
+
+}
+
+.list-group.list-group-root .list-group {
+    margin-bottom: 0;
+}
+
+.list-group-header {
+    background-color: var(--main-color);
+    color: white;
+}
+.list-group-itemback:hover{
+    background-color: var(--background-color)!important;
+}
+.list-group.list-group-root .list-group-item {
+    border-radius: 0;
+    /* border-width: 1px 0 0 0; */
+}
+
+.list-group.list-group-root>.list-group-item:first-child {
+    border-top-width: 0;
+    text-align: right !important;
+}
+
+.list-group.list-group-root>.list-group>.list-group-item {
+    padding-right: 15px;
+    text-align: right !important;
+}
+
+.list-group.list-group-root>.list-group>.list-group>.list-group-item {
+    padding-right: 15px;
+}
+.list-group.list-group-root>.list-group>.list-group>.list-group-item:focus-visible,
+.list-group.list-group-root>.list-group>.list-group>.list-group-item:focus, .list-group-item:focus-visible {
+    outline: none!important;
+    outline-color: transparent!important;
+}
+.list-group.list-group-root>.list-group>.list-group>.list-group>.list-group-item {
+    padding-right: 15px;
+}
+
+.btn-move {
+    color: #fff;
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+    /* font-weight: bold; */
+    font-weight: normal !important;
+    text-align: center !important;
+}
+
+/* .btn-move:hover {
+    color: #fff;
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+    font-weight: bold;
+} */
+
+.btn-cancle {
+
+    border-color: rgba(0, 0, 0, 0.418);
+    background-color: transparent;
+    color: var(--main-color);
+
+}
+
+a.a {
+    cursor: pointer;
+}
+
+a.a.active,
+a.a:hover {
+    color: var(--active-color);
+}
+
+a.btn {}
+
+.mg-bot-0 {
+    margin-bottom: 0 !important;
+}
+
+.title_border_none {
+
+    border-bottom-width: 0;
+}
+
+/* start read quran  */
+.go-read-quran {
+    background-color: #0D1730;
+    padding: 0;
+    background-image: url("../image/ashkan-forouzani-7blIFp0kFP4-u@2xmin.png");
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: end;
+}
+
+.go-read-quran .my-btn {
+
+    background-color: white;
+    color: var(--main-color);
+    font-size: medium;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.go-read-quran-img {}
+
+@media (max-width: 576px) {
+
+
+    .mg-bt-sm {
+        margin-bottom: 10px;
+    }
+}
+
+.quran .content-place {
+    /* min-height: 600px;
+    height: 90%; */
+    max-height: 400px;
+    border: 1px solid var(--border-color);
+    /*
+    min-height: 92%;
+    height: 92%; */
+}
+
+/*end  read quran  */
+
+/* reand elec quran page */
+
+
+
+
+.read-quran {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.read-quran .m-header {
+    font-weight: 700;
+
+    color: var(--main-color);
+    display: block;
+}
+
+/* read elec quran page */
+
+
+/* start other_science */
+
+.side_bar {
+    /* min-height: 600px; */
+    height: 80%;
+}
+
+.side_bar .head {
+    text-align: right;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.side_bar .side-bar-item {
+    padding: 7px;
+    text-align: right;
+}
+
+.side_bar .item-list {
+    border: 1px solid rgba(0, 0, 0, 0.383);
+    border-radius: 2px;
+}
+
+.side_bar a {
+    color: #0D1730;
+}
+
+.side_bar p,
+.side_bar a {
+    margin-bottom: 0;
+    margin-top: 0;
+    cursor: pointer;
+    display: block;
+}
+
+.subject_list .subject-title {
+    font-weight: 600;
+
+}
+
+.side_bar a:hover,
+.active {
+    color: var(--active-color);
+}
+.dropdown-item.active, .dropdown-item:active {
+    color: var(--active-color);
+    background-color: transparent;
+}
+.side_bar a.menu-active {
+    background-color: var(--active-color);
+    color: #fff;
+}
+.side_bar .active {
+    color: var(--active-color);
+    /* background-color: transparent!important;
+    border-color: #transparent; */
+
+}
+
+.subject-item .imgs>a {
+    cursor: pointer;
+}
+
+.subject-item .img {
+    width: 28px;
+    display: inline-block;
+}
+
+.subject-item p {
+    margin-top: 0;
+    margin-bottom: 0;
+
+}
+
+.subject-item img {
+    width: 100%;
+}
+
+.subject-item {
+    margin-bottom: 25px;
+    background-color: #ffffff;
+    border: 1px solid #B7BCC5;
+    border-radius: 6px;
+    min-height: 60px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+/* end  other_science */
+
+
+/* start call-us */
+.callus .form .send {
+    /*padding: 2px 35px;
+    */
+    text-align: center !important;
+    /* padding: 0.375rem 0.75rem !important; */
+    border-radius: 0.25rem !important;
+    -webkit-border-radius: 0.25rem !important;
+    -moz-border-radius: 0.25rem !important;
+    -ms-border-radius: 0.25rem !important;
+    -o-border-radius: 0.25rem !important;
+}
+
+.callus .info .phones {
+    margin-top: 10px;
+}
+
+.callus .info .phones p {
+    color: var(--main-color);
+    font-size: 13px !important;
+}
+
+.callus .info .phones .title,
+.callus .info .emails .title {
+
+    font-size: large;
+    font-weight: 600;
+
+}
+
+.callus .links {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.callus .links ul {
+    margin-bottom: 0;
+}
+
+.callus .info .phones .item,
+.callus .info .emails .item {
+    font-size: medium;
+    font-weight: 600;
+
+
+}
+
+.callus .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.callus .telephons .item {
+    border-left: 1px solid var(--main-color);
+    padding-left: .75rem;
+
+}
+
+.callus .telephons .item:last-child {
+    border-left: none;
+    padding-left: 0;
+}
+
+/* end call-us */
+
+
+
+
+
+
+
+
+
+/* start search  */
+.search-form {
+    color: var(--main-color);
+    font-size: large;
+    font-weight: bold;
+}
+
+.search-form form {
+    width: 100%;
+
+}
+
+.search-form form .write_her {
+    padding: 8px;
+}
+
+.head {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.search-form .text {
+    font-weight: 600;
+    font-size: large;
+
+}
+.contact-info .text {
+    font-weight: 600;
+    font-size: small;
+}
+.search-form .text-data {
+
+    font-weight: 500;
+    font-size: medium;
+    color: var(--main-color);
+}
+
+.search-form .text-data a {
+    color: var(--main-color);
+    font-weight: 600;
+}
+
+.form-select {
+
+    background-position: left 0.75rem center !important;
+    color: var(--main-color);
+}
+
+.search-form .form-check-input {
+    padding: 8px;
+}
+
+.search-form .form-check-input:checked {
+    /* color:white; */
+    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e"), #fff;
+    background-color: var(--main-color);
+
+
+}
+
+.flex {
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.f-expand {
+    width: 80%;
+
+}
+
+/* end  search  */

@@ -1,0 +1,596 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-08 04:08+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: base/admin.py:91
+msgid "Mark selected as published"
+msgstr "اجعل العناصر المحدده منشورة"
+
+#: base/admin.py:96
+msgid "Mark selected as not published"
+msgstr "اجعل العناصر المحدده غير منشورة"
+
+#: base/forms.py:89 base/models.py:146
+msgid "about_sheikh_short"
+msgstr "نبذة مختصرة عن الشيخ"
+
+#: base/forms.py:92 base/models.py:147
+msgid "about_mousa_short"
+msgstr "نبذة مخصترة عن الجمعية "
+
+#: base/forms.py:96 base/models.py:151 templates/policy.html:23
+msgid "privacy policy"
+msgstr "سياسة الخصوصية"
+
+#: base/forms.py:104 base/forms.py:113 base/models.py:461 base/models.py:501
+msgid "tafsir_ayat_text"
+msgstr "نص تفسير الأيات"
+
+#: base/forms.py:121 base/models.py:582
+msgid "tafsir_hadith_text"
+msgstr "نص شرح الحديث"
+
+#: base/general/logic/general.py:38
+msgid "kb"
+msgstr "كيلو بايت"
+
+#: base/general/logic/general.py:41
+msgid "mb"
+msgstr "ميجا بايت"
+
+#: base/general/logic/general.py:44
+msgid "gb"
+msgstr "جيجا بايت"
+
+#: base/models.py:25
+msgid "Published"
+msgstr "منشور"
+
+#: base/models.py:26
+msgid "Not Published"
+msgstr "غير منشور"
+
+#: base/models.py:31 base/views.py:319 base/views.py:389 base/views.py:416
+#: base/views.py:456 templates/quran.html:23
+msgid "quran"
+msgstr "القرآن الكريم"
+
+#: base/models.py:32 base/models.py:604 base/models.py:605 base/views.py:594
+msgid "AlHadith"
+msgstr "الحديث الشريف"
+
+#: base/models.py:33 base/models.py:355 base/models.py:356 base/views.py:1123
+msgid "OtherScience"
+msgstr "العلوم الأخرى"
+
+#: base/models.py:34
+msgid "pillars"
+msgstr "الإسلا م و أركانه"
+
+#: base/models.py:37
+msgid "aya"
+msgstr "آية"
+
+#: base/models.py:38 base/models.py:204 base/models.py:581
+msgid "hadith"
+msgstr "حديث"
+
+#: base/models.py:39
+msgid "fatwa"
+msgstr "فتوى"
+
+#: base/models.py:40
+msgid "part of book"
+msgstr "فقرة من كتاب"
+
+#: base/models.py:76 templates/book.html:38
+#: templates/quran-sound-tafsir.html:34
+msgid "book"
+msgstr "كتاب"
+
+#: base/models.py:76 templates/book.html:40
+msgid "artical"
+msgstr "المقال"
+
+#: base/models.py:77
+msgid "video"
+msgstr "فيديو"
+
+#: base/models.py:77
+msgid "audio"
+msgstr "ملف صوتى"
+
+#: base/models.py:78
+msgid "Makkah"
+msgstr "مكة"
+
+#: base/models.py:78
+msgid "Medina"
+msgstr "المدينة"
+
+#: base/models.py:79
+msgid "telephon"
+msgstr "تيليفون"
+
+#: base/models.py:79
+msgid "mobile"
+msgstr "موبايل"
+
+#: base/models.py:79
+msgid "fax"
+msgstr "فاكس"
+
+#: base/models.py:90
+msgid "site"
+msgstr "الموقع"
+
+#: base/models.py:91 base/models.py:179 base/models.py:525
+#: templates/callus.html:34
+msgid "name"
+msgstr "الاسم"
+
+#: base/models.py:92
+msgid "words"
+msgstr "كلمات بسيطة"
+
+#: base/models.py:105 base/models.py:106
+msgid "RelatedSites"
+msgstr "مواقع ذات صلة"
+
+#: base/models.py:110
+msgid "phone_number"
+msgstr "رقم الهاتف"
+
+#: base/models.py:111 base/models.py:283 base/models.py:362 base/models.py:376
+msgid "type"
+msgstr "نوع"
+
+#: base/models.py:121 base/models.py:122
+msgid "phone numbers"
+msgstr "أرقام الهاتف"
+
+#: base/models.py:126 base/models.py:132 base/models.py:133 base/models.py:180
+#: templates/callus.html:39 templates/callus.html:120
+msgid "email"
+msgstr "البريد الالكترونى"
+
+#: base/models.py:138
+msgid "instagram_link"
+msgstr "رابط الانسجرام"
+
+#: base/models.py:139
+msgid "facebook_link"
+msgstr "رابط الفيسبوك"
+
+#: base/models.py:140
+msgid "twitter_link"
+msgstr "رابط تويتر"
+
+#: base/models.py:141 base/models.py:348 base/models.py:378
+msgid "youtube_link"
+msgstr "رابط يوتيوب"
+
+#: base/models.py:143
+msgid "google_play_link"
+msgstr "رابط تطبيق Android"
+
+#: base/models.py:144
+msgid "app_store_link"
+msgstr "رابط تطبيق IOS"
+
+#: base/models.py:148
+msgid "about_sheikh"
+msgstr " عن الشيخ"
+
+#: base/models.py:149
+msgid "about_mousa"
+msgstr "عن الجمعية"
+
+#: base/models.py:160
+msgid "sheikh image about us"
+msgstr "صورة الشيخ فى  صفحة بنذة عنا "
+
+#: base/models.py:163
+msgid "mousa image about us"
+msgstr "صورة الجمعية فى  صفحة بنذة عنا"
+
+#: base/models.py:171 base/models.py:172 base/views.py:161
+msgid "home"
+msgstr "الرئيسية"
+
+#: base/models.py:181 templates/callus.html:44
+msgid "message"
+msgstr "الرسالة"
+
+#: base/models.py:187 base/models.py:188
+msgid "calledUs"
+msgstr "التواصل معنا"
+
+#: base/models.py:194
+msgid "publish_type"
+msgstr "نوع المنشور"
+
+#: base/models.py:199 base/models.py:345
+msgid "content"
+msgstr "محتوى"
+
+#: base/models.py:201 base/models.py:414 base/models.py:445 base/models.py:482
+#: base/models.py:564 templates/quran.html:29
+msgid "sura"
+msgstr "سورة"
+
+#: base/models.py:202
+msgid "ayat"
+msgstr " أيات"
+
+#: base/models.py:206 base/models.py:655 base/models.py:656
+msgid "AlHadith/AlSaheh/books"
+msgstr "الكتب/صحيح البخارى"
+
+#: base/models.py:209 base/models.py:580 base/models.py:621 base/models.py:639
+#: base/models.py:640
+msgid "ChapterInAlSaheh"
+msgstr "الباب/صحيح البخارى"
+
+#: base/models.py:211
+msgid "display date"
+msgstr "عرض البيانات"
+
+#: base/models.py:213 base/models.py:260 base/models.py:285 base/models.py:330
+#: base/models.py:347 base/models.py:379 base/models.py:426 base/models.py:463
+#: base/models.py:503 base/models.py:601
+msgid "publish status"
+msgstr "حالة النشر"
+
+#: base/models.py:219 base/models.py:220
+msgid "Daily publishes"
+msgstr "النشر اليومى"
+
+#: base/models.py:256 base/models.py:271 base/models.py:344 base/models.py:361
+#: base/models.py:375 base/models.py:636 base/models.py:650
+msgid "title"
+msgstr "العنوان"
+
+#: base/models.py:257 base/models.py:279
+msgid "file"
+msgstr "الملف"
+
+#: base/models.py:259
+msgid "fatwa_text"
+msgstr "نص الفتوى"
+
+#: base/models.py:266 base/models.py:267 base/models.py:749 base/models.py:750
+#: base/views.py:708 base/views.py:728 templates/fatwa.html:17
+#: templates/fatwa.html:29
+msgid "Fatwas"
+msgstr "الفتاوى"
+
+#: base/models.py:277
+msgid "cover"
+msgstr "الصوره"
+
+#: base/models.py:281
+msgid "page_count"
+msgstr "عدد الصفحات"
+
+#: base/models.py:309 base/models.py:310 base/views.py:240
+#: templates/book.html:36 templates/books.html:26 templates/ui/footer/footer
+#: copy.html:42 templates/ui/header/header.html:136
+#: templates/ui/header/header.html:232
+msgid "books and articles"
+msgstr "الكتب والمقالات"
+
+#: base/models.py:315
+msgid "key search"
+msgstr "البحث"
+
+#: base/models.py:316 base/models.py:579 base/models.py:620 base/models.py:635
+msgid "BookInAlSaheh"
+msgstr "كتاب فى صحيح البخارى"
+
+#: base/models.py:323 base/models.py:324
+msgid "Book Index"
+msgstr "فهارس الكتب"
+
+#: base/models.py:328
+msgid "subjects"
+msgstr "مواضيع"
+
+#: base/models.py:329
+msgid "file_type"
+msgstr "نوع الملف"
+
+#: base/models.py:331 base/models.py:349 base/models.py:363 base/models.py:381
+#: base/models.py:619 base/models.py:652
+msgid "order"
+msgstr "ترتيب"
+
+#: base/models.py:334 base/models.py:335 base/models.py:346
+msgid "OtherScienceSubject"
+msgstr "مواضيع العلوم الأخرى"
+
+#: base/models.py:364
+msgid "active flag"
+msgstr "تنشيط العنصر"
+
+#: base/models.py:369 base/models.py:370
+msgid "SessionsCategory"
+msgstr "أنواع المجالس"
+
+#: base/models.py:377
+msgid "Content"
+msgstr "المحتوى"
+
+#: base/models.py:380
+msgid "category"
+msgstr "الأنواع"
+
+#: base/models.py:387 base/views.py:1018
+msgid "Sessions"
+msgstr "المجالس"
+
+#: base/models.py:388
+msgid "sessions"
+msgstr "مجالس"
+
+#: base/models.py:418 base/models.py:448 base/models.py:486
+msgid "tafsir_aya_start"
+msgstr "بدايه تفسير الأيات من آية رقم"
+
+#: base/models.py:421 base/models.py:451 base/models.py:489
+msgid "tafsir_aya_end"
+msgstr "نهاية تفسير الأيات آية رقم"
+
+#: base/models.py:424 base/models.py:440 base/models.py:441
+msgid "telawa"
+msgstr "التلاوة"
+
+#: base/models.py:459 base/views.py:377 base/views.py:442
+msgid "sound_tafsir"
+msgstr "التفسير الصوتى"
+
+#: base/models.py:477 base/models.py:478 base/models.py:598
+msgid "audio_tafsir"
+msgstr "التفسير الصوتى"
+
+#: base/models.py:497
+msgid "video_tafsir_file"
+msgstr "ملف التفسير المرئى"
+
+#: base/models.py:499 base/models.py:600
+msgid "video_url"
+msgstr "رابط الفيديو "
+
+#: base/models.py:523
+msgid "tanzil_location"
+msgstr "مكان التنزيل"
+
+#: base/models.py:524
+msgid "number"
+msgstr "رقم"
+
+#: base/models.py:526
+msgid "ayas_count"
+msgstr "عدد الأيات"
+
+#: base/models.py:553
+msgid "Quran Tafsir and Telawa"
+msgstr "تفسير القرآن والتلاوة"
+
+#: base/models.py:554
+msgid "Sura"
+msgstr "السورة"
+
+#: base/models.py:560
+msgid "aya_count"
+msgstr "رقم الأية"
+
+#: base/models.py:562 base/models.py:617
+msgid "text"
+msgstr "النص"
+
+#: base/models.py:563 base/models.py:618
+msgid "text without tashkel"
+msgstr "النص بدون تشكيل"
+
+#: base/models.py:570 base/models.py:571
+msgid "Ayats"
+msgstr " الأيات"
+
+#: base/models.py:594
+msgid "video_tafsir"
+msgstr "التفسير المرئى"
+
+#: base/models.py:619
+msgid "Hadith"
+msgstr "الحديث الشريف"
+
+#: base/models.py:624 base/models.py:625
+msgid "hadith in Al Saheh"
+msgstr "الحديث فى صحيح البخارى"
+
+#: base/models.py:633
+msgid "chapter name"
+msgstr "أسم الباب"
+
+#: base/models.py:636 base/models.py:650
+msgid "without tashkel "
+msgstr "بدون تشكيل"
+
+#: base/models.py:648
+msgid "book name"
+msgstr "اسم الكتاب"
+
+#: base/views.py:177
+msgid "message send successfully"
+msgstr "تم ارسال الرسالة بنجاح"
+
+#: base/views.py:180
+msgid "data is not valid"
+msgstr "البيانات المرسلة غير صحيحة تأكد من البيانات قبل الارسال"
+
+#: base/views.py:188 templates/callus.html:17
+msgid "call us"
+msgstr "اتصل بنا"
+
+#: base/views.py:403 base/views.py:675
+msgid "Readed Tafsir"
+msgstr "التفسير المقروء "
+
+#: base/views.py:598
+msgid "AlHadith/AlSaheh"
+msgstr "الحديث الشريف / صحيح البخارى"
+
+#: mwasa2/urls.py:34 mwasa2/urls.py:122
+msgid "Files and Directory's"
+msgstr "الملفات و المجلدات"
+
+#: mwasa2/urls.py:35 mwasa2/urls.py:123
+msgid "BASE"
+msgstr "الأساسى"
+
+#: mwasa2/urls.py:48 templates/admin/inc/branding.html:16
+#: templates/admin/inc/branding.html:20 templates/admin/inc/branding.html:50
+msgid "Al Mouassa"
+msgstr "المواساة"
+
+#: mwasa2/urls.py:50
+msgid "Features area"
+msgstr "الخصائص"
+
+#: mwasa2/urls.py:52
+msgid "Al Mouassa Site Admin"
+msgstr "صفحه التحكم"
+
+#: mwasa2/urls.py:70
+msgid "admin"
+msgstr "المستخدم الرئيسي"
+
+#: templates/admin/actions.html:22 templates/admin/actions.html:25
+msgid "Run the selected action"
+msgstr " تنفيذ الاجرائات المختارة"
+
+#: templates/admin/actions.html:23
+msgid "publish"
+msgstr "انشر"
+
+#: templates/admin/actions.html:26
+msgid "cancel publish"
+msgstr "الغاء النشر"
+
+#: templates/admin/actions.html:40
+msgid "Click here to select the objects across all pages"
+msgstr "اضغط هنا لاختيار العنصر فى كل الصفح"
+
+#: templates/admin/actions.html:40
+#, python-format
+msgid ""
+"Select\n"
+"            all %(total_count)s %(module_name)s"
+msgstr ""
+
+#: templates/admin/actions.html:43
+msgid "Clear selection"
+msgstr "الغاء الاختيار"
+
+#: templates/admin/base.html:52
+msgid "Welcome,"
+msgstr "مرحبا "
+
+#: templates/admin/base.html:57
+msgid "View site"
+msgstr "الموقع"
+
+#: templates/admin/base.html:62 templates/admin/inc/branding.html:29
+msgid "Documentation"
+msgstr "الوثائق" ""
+
+#: templates/admin/base.html:66 templates/admin/inc/branding.html:36
+msgid "Change password"
+msgstr "تغير كلمة المرور"
+
+#: templates/admin/base.html:68 templates/admin/inc/branding.html:42
+msgid "Log out"
+msgstr "تسجيل الخروج"
+
+#: templates/admin/base.html:78
+msgid "Home"
+msgstr "الصفحة الرئيسية"
+
+#: templates/admin/base/change_form_object_tools.html:6
+msgid "History"
+msgstr "التاريخ"
+
+#: templates/admin/base/change_form_object_tools.html:9
+msgid "View on site"
+msgstr "الموقع"
+
+#: templates/admin/change_list_object_tools.html:8
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: templates/admin/inc/branding.html:19 templates/admin/inc/branding.html:23
+msgid "Django Administration"
+msgstr "صفحة التحكم"
+
+#: templates/admin/inc/branding.html:50
+msgid "Open"
+msgstr "أفتح"
+
+#: templates/callus.html:41
+msgid "Email is required"
+msgstr "يجب ادخال بريد الكترونى صحيح"
+
+#: templates/callus.html:46
+msgid "Message is required"
+msgstr "يجب ادخال الرسالة"
+
+#: templates/callus.html:49
+msgid "send"
+msgstr "ارسال"
+
+#: templates/media_show.html:51
+msgid "download"
+msgstr "تحميل"
+
+#: templates/quran-sound-tafsir.html:31
+msgid "AlSaheh"
+msgstr "صحيح البخارى"
+
+#: templates/quran-sound-tafsir.html:51
+msgid "chapter"
+msgstr "باب"
+
+#: templates/quran.html:46
+msgid "suras"
+msgstr "السور"
+
+#: templates/related_site.html:23
+msgid "related sites"
+msgstr "مواقع ذات صلة"
+
+#: templates/saheh.html:54
+msgid "books in AlSaheh"
+msgstr " الكتب فى صحيح البخارى"
+
+#: templates/search_view.html:22
+msgid "Advaced Search"
+msgstr "البحث المتقدم"

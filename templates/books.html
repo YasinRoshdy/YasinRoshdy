@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load custom_tags %}
+{% block title %}
+{{page.title}}
+{% endblock title %}
+{% block extra_css %}
+<link href="{% static 'css/books.css' %}" rel="stylesheet" />
+
+{% endblock extra_css %}
+{% block content %}
+
+
+<!-- ./book -->
+<div class='books  mg-bot' dir="rtl">
+    <div class="alert header-dark" role="alert">
+        <div class='container d-flex align-content-center align-items-center justify-content-rigth  '>
+
+            {% include 'ui/back/back_btn.html' %}
+            {% comment  %}
+            <a href={% url 'base:books' %}>
+            </a>
+            {% endcomment %}
+            {% translate "books and articles" %}
+            
+        </div><!-- ./container -->
+    </div>
+    <div class='container'>
+
+        <div class='row content'>
+            <!-- ./names -->
+            <div class="col-lg-3 col-md-4 names  " >
+
+
+                <!-- ./item -->
+                {% comment  %}
+                  
+                {% endcomment %}
+
+                <ul id="TogglerListClick" class="list-group  ">
+                    
+                    {% if type == 'artical' %}
+                    <a href="{% url 'base:books'  %}">
+
+                        <li class=" header-dark head list-group-item title fs-mh hov-act sider_curser" >الكتب</li>
+                    </a>
+                    
+                    
+                    {% else %}
+                    <li class=" header-dark head list-group-item title fs-mh" >الكتب</li>
+                    {% endif %}
+                        
+                    
+                   
+                     <div  class='bg-border-side_bar-not-bot TogglerList'>
+
+                         {% for book in books %}
+                         <li class="list-group-item  ">
+                             <a class=" " href="{{ book.get_absolute_url }}">
+                                {% slice_text val=book.title count=35%} 
+                            </a>
+                            </li>
+                            {% endfor %}            
+                        </div>
+                    {% comment  %}
+                    
+                        <a href="{% url 'base:artical'  %}">
+                        </a>                  
+                    {% endcomment %}
+                    
+                    {% if type == 'book' %}
+                    <a href="{% url 'base:artical'  %}" class='hov-act'>
+
+                        <li class="header-dark head list-group-item title fs-mh hov-act sider_curser" >المقالات</li>
+                    </a>
+                    
+                    
+                    {% else %} 
+                    <li class="header-dark head list-group-item title fs-mh sider_curser" >المقالات</li>
+                    {% endif %}
+
+                    <div class='bg-border-side_bar TogglerList'>
+
+                        {% for artical in articals %}
+                        
+                        <li class="list-group-item">
+                            
+                            <a class="fs-n" href="{% url 'base:book' artical.id %}">
+                                {% slice_text val=artical.title count=35 %}   
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </div>
+                     
+                
+                    
+                
+                </ul>
+            </div>
+            <!-- ./names -->
+            {% static  'image/logo.png' as book_cover %}
+
+            <div class="book-list col-lg-9 col-md-8 mt-3 mt-md-0 row top-buffer">
+                
+
+                
+                {% if type == 'book' %}
+                
+                
+                {% for book in  books  %}
+                
+                <div class="col-md-6 col-lg-4  book-item text-center"  >
+                    <a href="{{ book.get_absolute_url }}">
+                        
+                        <img class="figure-img img-fluid rounded fluid img-thumbnail h-100"
+                        src="{{ book.cover.url|default:book_cover }}" alt="">
+                    </a>
+                </div>
+                
+                {% endfor %}
+                
+                {% else %}
+                {% for book in  articals  %}
+                
+                <div class="col-md-6 col-lg-4  book-item text-center" style= "max-height: 420px;">
+                    <a href="{{ book.get_absolute_url }}">
+                        
+                        <img class="figure-img img-fluid rounded fluid img-thumbnail h-100"
+                        src="{{ book.cover.url|default:book_cover }}" alt="">
+                    </a>
+                </div>
+                
+                {% endfor %}
+                {% endif %}
+
+
+            </div>
+        </div><!-- ./content -->
+    </div><!-- ./container -->
+
+</div><!-- ./book -->
+
+{% endblock content %}

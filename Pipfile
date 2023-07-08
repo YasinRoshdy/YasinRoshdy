@@ -1,0 +1,52 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+djangocms-admin-style = "==3.0.0"
+requests = "==2.27.1"
+asgiref = "==3.5.0"
+certifi = "==2021.10.8"
+charset-normalizer = "==2.0.11"
+cssselect2 = "==0.4.1"
+django-js-asset = "==1.2.2"
+django-mptt = "==0.13.4"
+django-polymorphic = "==3.0.0"
+easy-thumbnails = "==2.8.1"
+idna = "==3.3"
+lxml = "==4.7.1"
+pytz = "==2021.3"
+reportlab = "==3.6.6"
+sqlparse = "==0.4.2"
+svglib = "==1.2.1"
+tinycss2 = "==1.1.1"
+urllib3 = "==1.26.8"
+webencodings = "==0.5.1"
+Django = "==3.2.12"
+Pillow = "==9.0.1"
+Unidecode = "==1.1.2"
+pylint-django = "*"
+django-filer = "*"
+django-phonenumber-field = {extras = ["phonenumberslite"], version = "*"}
+hijri-converter = "*"
+django-ckeditor = "*"
+psycopg2-binary = "*"
+djangorestframework = "*"
+drf-yasg = "*"
+google-api-python-client = "*"
+google-auth-oauthlib = "*"
+google-auth-httplib2 = "*"
+pypdf2 = "*"
+
+[dev-packages]
+autopep8 = "*"
+pylint = "*"
+black = "*"
+pycodestyle = "*"
+
+[requires]
+python_version = "3.9"
+
+[pipenv]
+allow_prereleases = true

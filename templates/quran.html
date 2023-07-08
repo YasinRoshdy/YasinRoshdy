@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load custom_tags %}
+{% block title %}
+{{page.title}}
+{% endblock title %}
+{% block extra_css %}
+
+<link href="{% static 'css/saheh.css' %}" rel="stylesheet" />
+
+{% endblock extra_css %}
+{% block content %} 
+<!-- ./book -->
+<div class='quran  mg-bot' dir="rtl">
+    <div class="alert header-dark" role="alert">
+        <div class='container d-flex align-content-center align-items-center justify-content-rigth  '>
+
+           <div>
+               {% include 'ui/back/back_btn.html' %}
+
+               <a href="{% url 'base:quran' %}" >
+                   {% translate "quran" %} 
+            </a>
+            
+            {% if sura %}
+            / 
+            <a href="{% url 'base:quran' %}"></a>
+                {% translate "sura" %}  {{sura.name}}
+            {% endif %}
+        </div>
+            <div>
+
+            </div>    
+        </div><!-- ./container -->
+    </div>
+    <div class='container'>
+        <div class="row">
+
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <!-- ./Chapters -->
+                <div class='chapters'>
+                    <div class="just-padding">
+
+                        <div id="TogglerListClick" class="list-group list-group-root well">
+                            <p  focus id="sura_Base" class="list-group-item mg-bot-0 list-group-header  text-center head sider_curser">{% translate "suras" %} </p>
+                            <script>
+                                {% comment %}
+                                jQuery(document).ready(()=>{
+                                    $('html, body').animate({
+                                        scrollTop: $("#sura_Base").offset().top
+                                      }, 1000);
+    
+                                    
+                                })
+                                 {% endcomment %}
+                                
+                                {% comment %}
+                                 if (!document.location.hash){
+                                    document.location.hash = 'sura_Base';
+                                }
+                                 {% endcomment %}
+                                 
+                                 {% comment %}
+                                 
+                                jQuery(document).ready(()=>{
+                                $('html, body').animate({
+                                scrollTop: $("#sura_Base").offset().top}, 10);})
+                                document.getElementById('sura_Base').scrollIntoView({behavior: 'smooth'});
+                                document.getElementById('id').scrollIntoView({
+                                    behavior: 'smooth'
+                                  });
+ 
+                                $(document).ready(function(){
+                                      
+                                      
+                                    const element = document.getElementById("708");
+                                    element.scrollIntoView();    
+                                });
+                                    window.scrollTo( document.body.scrollHeight , 0);
+                                {% endcomment %}
+                                {% comment %} document.getElementById('id').scrollIntoView({
+                                    behavior: 'smooth'
+                                  }); {% endcomment %}
+                            </script>
+                            <div   class="TogglerList list-group overflow-auto text-nowrap bg-border-side_bar">
+                                {% for sural in suras    %}
+                                
+                                
+                                {% comment %} 
+                                
+                                {% url 'base:quran_media_audio' sural.id  as had_url_aud %}
+                                {% url 'base:quran_media_telawa' sural.id as had_url_telawa %}
+                                    <a onclick='set_data_q("{{sural.all_ayas}}","{{had_url_vid}}","{{had_url_aud}}","{{had_url_telawa}}" )'
+                                    class=" list-group-item a {% if  sura.id == sural.id %}active {% endif %} " id="#sura{{sural.id}}">{{sural.name}} </a>
+                                    {% endcomment %}
+                                   
+                                    {% url 'base:quran_sura' sural.id as  sura_url  %}
+                                    {% concat '' sural.id  as sural_id %}
+                                    
+                                    {% add_section_param sura_url sural_id as sura_full_url %}
+
+                                    
+                                    <a    id="{{sural_id}}" href="{{sura_full_url}}"
+                                        class=" text-center text-nowrap list-group-item a {% if  sura.id == sural.id %}selc-active  {% else %} selc_not_active {% endif %}" 
+                                       >{{sural.name}} </a>
+
+                                
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- ./Chapters -->
+
+            <div class="col-lg-9 col-md-8 mt-3 mt-md-0 col-sm-12">
+                <!-- ./btn-rows -->
+                <div class='btn-rows text-center   '>
+
+                    <a class="btn btn-move mx-lg-2 mb-1 " onclick="" id="tafsir_tel_a" href="{% if sura != None %}{% url 'base:quran_media_telawa' sura.id %}{% endif %}"> التلاوة </a>
+                    <a class="btn btn-move mx-lg-2 mb-1 " id="tafsir_vid_a" href="{% if sura %}{% url 'base:quran_media_video' sura.id %}{% endif %}"> التفسيرالمرئى </a>
+                    <a class="btn btn-move mx-lg-2 mb-1 " id="tafsir_aud_a" href="{% if sura %}{% url 'base:quran_media_audio' sura.id %}{% endif %}"> التفسير الصوتى </a>
+                    <a class="btn btn-move mx-lg-2 mb-1 " id="tafsir_read_a" href="{% if sura %}{% url 'base:quran_media_read' sura.id %}{% endif %}"> التفسير المقروء </a>
+                        
+                    {% comment %}
+                    
+                        <a class="btn  btn-move min-w-b " id="tafsir_tel_a" href="#"> تلاوة </a>
+                        <a class="btn btn-move" id="tafsir_vid_a" href="#"> التفسير
+                            المرئى </a>
+                            <a class="btn  btn-move " id="tafsir_aud_a" href="#"> التفسير الصوتى </a>
+                        {% endcomment %}
+                        
+                </div><!-- ./btn-rows -->
+
+
+                <!-- ./content-place -->
+                {% if quran_text != None %}
+                <div class='content-place overflow-auto  bg-border-side_bar-quran'  >
+                    
+                        
+                    {% if   sura.number == 9 %}
+                    
+                    {% else %}
+                    <div class="text-center quran-text">بِسْمِ الله الرَّحْمَنِ الرَّحِيمِ</div>
+                    {% endif %}
+                        
+                    
+                    
+                        
+                        {% if   quran_text != None %}
+                        {{quran_text|safe}}                            
+                        {% endif %}
+                        
+                    
+
+
+                </div><!-- ./content-place -->
+                {% endif %}
+            </div>
+
+            {% comment  %}
+            <div class="col-md-2 col-xm-6 go-read-quran text-center">
+                <!-- ./ go-read-quran -->
+                <a class="btn btn-secondary my-btn " href="{% url 'base:read_quran' %}"> اضغط لقراءة المصحف </a>
+            </div>
+            {% endcomment %}
+        </div>
+
+    </div><!-- ./container -->
+
+
+
+
+</div><!-- ./book -->
+
+{% endblock content %}
+{% block load_more_js %}
+{% endblock load_more_js %}
+
+
+
+ 

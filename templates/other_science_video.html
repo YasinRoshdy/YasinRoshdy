@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+{{page.title}}
+{% endblock title %}
+{% block extra_css %}
+
+<link href="{% static 'css/general.css' %}" rel="stylesheet" />
+<link href="{% static 'css/saheh.css' %}" rel="stylesheet" />
+
+{% endblock extra_css %}
+{% block content %}
+<!-- start saheh -->
+<div class="other_science mg-bot" dir="rtl">
+    <div class="alert header-dark">
+        <div class='container d-flex align-content-center align-items-center justify-content-rigth  '>
+            {% include 'ui/back/back_btn.html' %}
+           <div>
+               {{page.main_header_title }}
+           </div>
+
+
+        </div><!-- ./container -->
+    </div>
+
+    <div class='container'>
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+
+                <div class='side_bar'>
+                    <!-- ./item-list -->
+                    <div id="TogglerListClick" class='item-list list-group'>
+                        <p class="header-dark head list-group ">{{page.sub_title_video}}</p>
+                        <div   class='TogglerList bg-border-side_bar '>
+                        {% for subject_item in subject_video  %}
+                        {% if  subject_item.id == subject.id %}
+                        <a class=" pb-1 pt-1 item selc-active   "  style='padding: 0.5rem 1rem!important;'   href="#">{{subject_item.subjects}}</a>
+                        {% else %}
+                        <a class=" pb-1 pt-1   item list-group-item selc_not_active"
+                            href="{% url 'base:other_science_video_subject' subject_item.id  %}"  style='padding: 0.5rem 1rem!important;'  >{{subject_item.subjects}}</a>
+                        {% endif %}
+                        {% endfor %}
+                    </div> 
+                    </div><!-- ./item-list -->
+                </div>
+                <!-- ./item-list -->
+            </div>
+            <div class="subject_list max-h col-lg-9 col-md-8 mt-3 mt-md-0">
+
+                {% if data != None %}
+
+                    <div class='subject-title'>
+                        <p class="active">{{subject.subjects}}</p>
+
+                    </div><!-- ./ -->
+
+
+                    {% for item  in data  %}
+
+                        <div class="subject-item">
+                            <p class="text-overflow"> {{item.title}} </p>
+                            
+                            
+                            <div class="d-flex align-items-center">                            
+
+                            {% if subject.file_type == "video" %}
+                                <div class=' ' >
+                                    <a class="mx-2" href="{% url 'base:other_science_subject_video' item.id %}" >
+                                        <div class="img">
+                                            <img src="{% static 'icons/play.jpg' %}" alt="">
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endif %}
+                            {% if subject.file_type == "audio" %}
+                                <div class='imgs d-flex align-items-center   '>
+                                    <a class='mx-2'  onclick="play_pause_audio( '{{item.id}}','{% static 'icons/' %}' ,'{{item.file.url}}' )">
+                                        <div class="img">
+                                            <img id="img{{item.id}}" src="{% static 'icons/play.jpg' %}" alt="">
+                                        </div>
+                                    </a>
+                                    </div>
+                            {% endif %}
+
+                                    <!-- <div class="vl"></div> -->
+                            <!-- change 20230710 -->
+                            <!-- <a href="{{item.file.url}}" download>
+                                <div class="img">
+                                    <img src="{% static 'icons/save.png' %}" alt="">
+                                 </div>
+                            </a> -->
+                                
+
+                            </div>
+                        </div>
+                        
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+            </div>
+
+        </div><!-- ./row -->
+        </div><!-- ./container -->
+
+
+
+    </div>
+    <!-- end saheh -->
+    {% endblock content %}
+
+    {% block load_more_js %}
+    <script type="text/javascript" src="{% static 'js/saheh0.js' %}"></script>
+    {% endblock load_more_js %}

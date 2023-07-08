@@ -1,0 +1,74 @@
+.about_us {}
+
+.about_us {}
+
+.about_us .title {
+    font-size: large;
+    font-weight: 800;
+    color: var(--active-color);
+    /*color: var(--main-color);*/
+}
+
+.about-title{
+    font-size: x-large;
+    color: var(--active-color);
+}
+
+.oval {
+    width: 220px;
+    height: 220px ;
+    border-radius: 10px;
+    float: right;
+    shape-outside: inset(100px 100px 100px 100px 10px);
+
+    /* background: url('../image/1-5.jpg') no-repeat center center fixed; */
+    background-image: url('../image/1-5.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    /* white-space: pre-wrap; */
+
+}
+.about-sec{
+    width:100%
+}
+
+.about-sec img{
+    width: 100%;
+}
+.about-sec .text {
+    font-size: medium;
+    font-weight: 600;
+    color: var(--main-color);
+    white-space: pre-wrap;
+    text-align: justify;
+}
+.about-sec p, .about-sec p span, .about-sec span {
+    font-family: quran_font !important;
+    font-size: 14px !important;
+}
+    /* start privacy */
+.data {
+
+
+    width: 70%;
+    text-align:center;
+
+}
+.privacy .text{
+
+
+}
+/* end  privacy */
+
+.related_site{
+
+
+}
+.related_site{
+
+
+}

@@ -1,0 +1,46 @@
+{% load static %}
+{% load i18n %}
+<!----------------------------------------- start footer ----------------------------------------->
+<footer class=" ">
+
+  {% comment %} start new footer {% endcomment %}
+  
+  <div class="footer2 fs-b" >
+    <div class="container">
+      
+      <div class="content">
+        
+      <a  href="{% url 'base:related_site' %}" > مواقع ذات صلة</a>
+      <hr>
+     
+      <a  href="{% url 'base:policy' %}" > سياسة الخصوصية</a>
+      <hr>
+      <div class="visitor-count">
+        عدد الزائرين
+        <span> {{info.visitor_count|default:140}}</span>
+        
+      </div>
+    </div>
+  </div>
+  </div>
+  {% comment %} end new footer {% endcomment %}
+
+  <!-- start copy section  -->
+  <!-- <div class="copy ar-text">
+    <p class="fs-b">
+      <span class="all-rigth-text">
+        جميع الحقوق محفوظة لجمعية المواساة الإسلامية
+      </span>
+      <span class="at"> @ </span>
+      <span class="year fw-bolder ">
+        2022
+        <!-- 2022 &copy;
+      </span>
+      {% comment  %}
+      <span class="shaikh-font active fw-bold "> فضيلة الشيخ ياسين رشدى </span>
+      {% endcomment %}
+    </p>
+  </div> -->
+  <!-- ./copy -->
+</footer>
+<!----------------------------------------- end footer ----------------------------------------->

@@ -1,0 +1,340 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+{{page.title}}
+{% endblock title %}
+
+
+{% block content %}
+<div class = "callus" dir="rtl">
+
+   
+    <div class="alert header-dark" role="alert">
+        <div class='container d-flex align-content-center align-items-center justify-content-rigth'>
+            {% include 'ui/back/back_btn.html' %}
+
+            <a href={% url 'base:callus' %}> {% translate "call us" %}
+            </a>
+        </div><!-- ./container -->
+
+    </div>
+
+
+    <div class='container' dir="rtl">
+        
+
+        <div class="row mg-bot mg-top d-flex justify-content-between  ">
+
+        <div class='col-md-5 col-sm-8 mg-bt-sm'>
+
+                    
+                <form class="form" action="{% url 'base:callus' %}" method="post"    >
+                    {% csrf_token %}
+                    <label  class="form-label" for="your_name">{% translate "name" %} </label>
+                    <br>
+                    <input  class="form-control" id="your_name" type="text" name="your_name"  required  >
+                    <br>
+                    
+                    <label  class="form-label"  for="your_email">{% translate "email" %} </label>
+                    <br>
+                    <input  class="form-control" id="your_email"  type="text"   required  name="your_email" oninvalid='this.setCustomValidity("{% translate 'Email is required' %}")' >
+                    <br>
+
+                    <label  class="form-label"  for="your_message">{% translate "message" %} </label>
+                    <br>
+                    <textarea  class="form-control"  id="your_message" name="your_message"  rows="4" cols="50" type="text" required value=""   oninvalid='this.setCustomValidity("{% translate 'Message is required' %}")'></textarea>
+                    <br>
+                    <div class="d-flex justify-content-center text-center">
+                        <input class="  btn btn-move send  "  type="submit" value="{% trans 'send' %}">
+                        <!-- ./submit --><div class='submit'>
+                    </div>
+
+                        
+                    </div><!-- ./submit -->
+                </form>
+            </div><!-- ./ -->
+            <div class="col-md-5    col-sm-4 info main-border fs-n">
+            
+            <!-- ./phones -->
+            <div class='phones text-center fs-n'>
+            
+                <p class='fw-bolder fs-mh'>
+                    صالة الندوات وعقود القران  للاستعلام والتعاقد
+                </p>
+                <br>
+                <div class = 'row'>
+                    {% if  telephons %}
+                        <p class='col-5 col-md-3 text-end telephons  fw-bold fs-mh'>
+                        تليفون  
+                        </p>
+
+
+                        <p class = 'col-7 col-md-9 fs-n text-end'>
+
+                            
+                        {% for item  in telephons  %}
+                        <a href="tel:{{item.phone_number}}" class="item fs-n fw-bold   active fs-n " style="direction: ltr;">{{item.phone_number}}</a> 
+                        
+                        {% if not forloop.last  %}
+                            
+                        |      
+                        {% endif %}
+                        {% endfor %}
+                    </p>  
+                    {% endif %}
+                        
+                    
+                <p class='fw-bolder text-end fs-n'>
+                    {% if  mobiles %}
+                    <p class='col-5 col-md-3 text-end telephons fw-bold fs-mh '>
+                        موبايل  
+                    </p>
+                    
+                    <p class = 'col-7 col-md-9 fs-n text-end'>
+                        {% for mobile  in mobiles  %} 
+                    <a href="tel:{{mobile.phone_number}}" class="item fs-n fw-bold   active " style="direction: ltr;">{{mobile.phone_number}}</a>     
+                    {% endfor %}
+                    {% endif %}
+                    {% if  mobiles  and   faxs%}
+                    &nbsp &nbsp| &nbsp &nbsp
+                    </p>
+                    
+                    {% endif %}
+                
+                    {% if  faxs %}
+                        <span class='col-5 col-md-3 fw-bold fs-mh'>
+                        فاكس  
+                        </span>
+                        <p class = 'col-7 col-md-9 fs-n text-end'>
+                    {% for fax  in faxs  %}
+                    <span class="item fs-n fw-bold   active" style="direction: ltr;">{{fax.phone_number}}</span>         
+                    {% endfor %}
+                    {% endif %}
+                    </p>
+                </p>
+        
+                <p class="col-5 col-md-3 fs-mh fw-bolder  text-end">
+                    
+                        {% if emails  %}
+                        {% trans "email" %}
+                    
+                </p>
+                <p class = 'col-7 col-md-9 fs-n text-end'>
+                    {% for item  in emails  %}
+                    <a class="item fs-m fw-bold active " href="mailto:{{item.email}}"> {{item.email}}</a>            
+                    {% endfor %}
+                    {% endif %}
+                </p>
+            </div>
+            </div><!-- ./phones -->
+
+
+        
+            <!-- ./links -->
+            <div class='links'>
+
+
+                <div class="icons  os-li">
+                    <ul>
+                        <li>
+                            <a href="{{info.youtube_link}}">
+                                <img src="{% static 'image/youtube.png' %}" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{info.twitter_link}}">
+                                <img src="{% static 'image/twitter_sv@2x.png' %}" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{info.instagram_link}}">
+                                <img src="{% static 'image/instagram.png' %}" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{info.facebook_link}}">
+                                <img src="{% static 'image/facebook.png' %}" />
+                            </a>
+                        </li>
+                        <div class="clearfix"></div>
+
+                    </ul>
+                </div>
+                <br>
+            </div><!-- ./links --> 
+            
+        </div>   
+        <div class="col-sm-12 mt-5 search-form">
+             <div class="contact-info">
+                <h2>أرقام جمعية المواساة وما يتبعها من إدارات</h2>
+                <table class="table table-responsive">
+                  <thead>
+                      <tr class="text-center">
+                          <th class="text">م</th>
+                          <th class="text">خطوط إدارة جمعية المواساة</th>
+                          <th class="text">الرقم</th>
+                          <th class="text">الخط التابع له</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="text">1</td>
+                      <td class="text">خطوط إدارة الجمعية</td>
+                      <td class="text"><a href="tel:002034279624">00203-4279624</a></td>
+                      <td class="text">الخط الرئيسى للإدارة + فاكس</td>
+                    </tr>
+                  <tr>
+                      <td class="text">2</td>
+                      <td class="text">خطوط إدارة الجمعية</td>
+                      <td class="text"><a href="tel:00201065533037">002010-65533037</a></td>
+                      <td class="text">خط الموبايل - مدير الجمعية</td>
+                  </tr>
+                    <tr>
+                        <td class="text">3</td>
+                        <td class="text">خطوط إدارة الجمعية</td>
+                        <td class="text"><a href="tel:002034289330">00203-4289330</a></td>
+                        <td class="text">خط لجنة الزكاة</td>
+                    </tr>
+                    <tr>
+                        <td class="text">4</td>
+                        <td class="text">خطوط منتجع المواساة</td>
+                        <td class="text"><a href="tel:002034297626">00203-4297626</a></td>
+                        <td class="text">خط لجنة كفالة المريض</td>
+                    </tr>
+                    <tr>
+                        <td class="text">5</td>
+                        <td class="text">خطوط منتجع المواساة</td>
+                        <td class="text"><a href="tel:002034249174">00203-4249174</a></td>
+                        <td class="text">دار المسنين و حجز القاعات</td>
+                    </tr>
+                    <tr>
+                        <td class="text">6</td>
+                        <td class="text">خطوط منتجع المواساة</td>
+                        <td class="text"><a href="tel:00201066653499">002010-66653499</a></td>
+                        <td class="text">دار المسنين و حجز القاعات</td>
+                    </tr>
+                    <tr>
+                        <td class="text">7</td>
+                        <td class="text">المركز الطبى بالقبارى</td>
+                        <td class="text"><a href="tel:002034449330"> 00203-4449330</a></td>
+                        <td class="text">المركز الطبى بالقبارى</td>
+                    </tr>
+                    <tr>
+                        <td class="text">8</td>
+                        <td class="text">حضانة محرم بك</td>
+                        <td class="text"><a href="tel:002033921793">00203-3921793</a></td>
+                        <td class="text">حضانة محرم بك</td>
+                    </tr>
+                    <tr>
+                        <td class="text">9</td>
+                        <td class="text">مكتب توجيه الأسرة بالقبارى</td>
+                        <td class="text"><a href="tel:002034426061">00203-4426061</a></td>
+                        <td class="text">مكتب توجيه الأسرة بالقبارى</td>
+                    </tr>
+                  </tbody>
+              </table>
+            </div>
+            <div class="contact-info-mobile">
+                <h2>أرقام جمعية المواساة وما يتبعها من إدارات</h2>
+                <table class="table table-responsive">
+                    <tbody>
+                    <tr>
+                        <td class="text">1</td>
+                        <td class="text">خطوط إدارة الجمعية<br>
+                            <b><a href="tel:002034279624">00203-4279624</a></b><br>
+                            الخط الرئيسى للإدارة + فاكس
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">2</td>
+                        <td class="text">خطوط إدارة الجمعية<br>
+                            <b><a href="tel:00201065533037">002010-65533037</a></b><br>
+                            خط الموبايل - مدير الجمعية</td>
+                    </tr>
+                    <tr>
+                        <td class="text">3</td>
+                        <td class="text">خطوط إدارة الجمعية<br>
+                            <b><a href="tel:002034289330">00203-4289330</a></b><br>
+                            خط لجنة الزكاة
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">4</td>
+                        <td class="text">خطوط منتجع المواساة<br>
+                            <b><a href="tel:002034297626">00203-4297626</a></b><br>
+                            خط لجنة كفالة المريض
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">5</td>
+                        <td class="text">خطوط منتجع المواساة<br>
+                            <b><a href="tel:002034249174">00203-4249174</a></b><br>
+                            دار المسنين و حجز القاعات
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">6</td>
+                        <td class="text">خطوط منتجع المواساة<br>
+                            <b><a href="tel:00201066653499">002010-66653499</a></b><br>
+                            دار المسنين و حجز القاعات
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">7</td>
+                        <td class="text">المركز الطبى بالقبارى<br>
+                            <b><a href="tel:002034449330">00203-4449330</a></b><br>
+                            المركز الطبى بالقبارى
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">8</td>
+                        <td class="text">حضانة محرم بك<br>
+                            <b><a href="tel:002033921793">00203-3921793</a></b><br>
+                            حضانة محرم بك
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">9</td>
+                        <td class="text">مكتب توجيه الأسرة بالقبارى<br>
+                            <b><a href="tel:002034426061">00203-4426061</a></b><br>
+                            مكتب توجيه الأسرة بالقبارى
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--<img src="{% static 'image/contact-us.png' %}" class="img-fluid">-->
+        </div> 
+        </div>
+    </div><!-- ./container -->
+    
+    {% if messages %}
+<!-- <ul class="messages list-unstyled" > -->
+    {% for message in messages %}
+    <!-- <li -->
+    <!-- {% if message.tags %} class="{{ message.tags }}"{% endif %}> -->
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} 
+    <div class="alert alert-danger" role="alert">
+        <div class="container">
+            
+            {{ message }}
+        </div>
+          </div>
+    {% endif %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %} 
+    <div class="alert alert-success" role="alert">
+        <div class="container">
+            
+            {{ message }}
+        </div>
+          </div>
+    {% endif %}
+
+    <!-- </li> -->
+    {% endfor %}
+<!-- </ul> -->
+{% endif %}
+</div>
+
+{% endblock content %}

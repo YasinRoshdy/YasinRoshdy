@@ -1,0 +1,362 @@
+{% load static %}
+{% load i18n %}
+<div id='full_bar' class='sticky-navbar makefixed'>
+
+    <!----------------------------------------- start header ---------------------------------------->
+    <div class="header " id="content-header">
+        <div class="container">
+            <!-- ./header-content -->
+            <div class='header-content'>
+                <div class="header-content-data">
+
+
+                    <div class=" header-content-left">
+                        <div class="icons align-baseline os-li">
+                            <ul class="d-flex flex-row justify-content-evenly p-0">
+                                <li class="ps-1">
+                                    <a href="{{info.youtube_link}}">
+                                        <img src="{% static 'image/youtube.png' %}" />
+                                    </a>
+                                </li>
+                                <li class="ps-1">
+                                    <a href="{{info.twitter_link}}">
+                                        <img src="{% static 'image/twitter_sv@2x.png' %}" />
+                                    </a>
+                                </li>
+                                <li class="ps-1">
+                                    <a href="{{info.instagram_link}}">
+                                        <img src="{% static 'image/instagram.png' %}" />
+                                    </a>
+                                </li>
+
+                                <li class="ps-1">
+
+                                    <a href="{{info.facebook_link}}">
+                                        <img src="{% static 'image/facebook.png' %}" />
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <div class="hijri   fs-b fw-bold" style="direction:rtl">
+                            {{info.hijri}}
+                        </div>
+                    </div>
+
+                    <div class="search ar-text align-middle heda d-none d-sm-block">
+                        <form method="GET" action="{% url 'base:search_results' %}" id="searchform"
+                            class="form-stacked mb-2 mt-2 mt-lg-0">
+                            <div>
+                                <button class="" style="background: none; background: none;padding: 0;border: none;"
+                                    type="submit" data-loading-text="Submitting...">
+                                    <!-- بحث -->
+                                    <img src="{% static 'icons/search.svg' %}" />
+                                </button>
+                                <input id="user-input" class="input-field ar-text fs-b" autocomplete="off" type="text"
+                                    name="mainq" placeholder="ابحث هنا" />
+                            </div>
+                            <div id="search_results" class="mt-1" dir="rtl"
+                                style="display: none; z-index: 20001; position: fixed; width: 300px; max-height: 50%; overflow-y: auto; margin-left: 5px;">
+
+                                {% include 'search-results-partial.html' %}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                <!-- start names -->
+                <div class="names header-right align-baseline d-flex   flex-sm-column  flex-l-sm-column">
+                    <a href="{% url 'base:home'  %}">
+                        <p class="shaikh-font  ar-text m-sm-2 my-1">فضيلة الشيخ ياسين رشدى</p>
+                        <!-- <p class="ar-text m-sm-2 fs-mh my-1">جمعية المواساة الإسلامية</p> -->
+                    </a>
+                </div>
+                <!-- ./names -->
+            </div>
+        </div><!-- ./header-content -->
+        <!-- ./container -->
+    </div>
+    <!-- ./header -->
+
+    <div class='bar d-sm-none' id="main_bar_in_header">
+        <div class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <div class="search mobile-search ar-text align-middle heda">
+                    <form method="GET" action="{% url 'base:search_results' %}" id="searchform" class="form-stacked mb-2 mt-2 mt-lg-0">
+                        <div>
+                            <button class="mobile-search-btn" type="submit" data-loading-text="Submitting...">
+                                <!-- بحث -->
+                                <img src="{% static 'icons/search.svg' %}" />
+                            </button>
+                            <input id="user-input" class="input-field ar-text fs-b" autocomplete="off" type="text"
+                                name="mainq" placeholder="ابحث هنا" />
+                        </div>
+                        <div id="search_results" class="mt-1" dir="rtl"
+                            style="display: none; z-index: 20001; position: fixed; width: 300px; max-height: 50%; overflow-y: auto; margin-left: 5px;">
+
+                            {% include 'search-results-partial.html' %}
+                        </div>
+                    </form>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link {% if page.index == 1 %} active{% endif %}"
+                                href="{% url 'base:home'  %}">الصفحة الرئيسية</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if page.index == 2 %} active{% endif %}"
+                                href="{% url 'base:quran'  %}">القرآن الكريم </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if page.index == 3 %} active{% endif %}"
+                                href="{% url 'base:saheh'  %}"> الحديث الشريف </a>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                العلوم الأخرى
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item {% if page.index == 9 %} active{% endif %}"
+                                        href="{% url 'base:other_science_audio'  %}">المواضيع الصوتية</a></li>
+                                <li><a class="dropdown-item {% if page.index == 10 %} active{% endif %}"
+                                        href="{% url 'base:other_science_video'  %}"> المواضيع المرئية</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if page.index == 5 %} active{% endif %}"
+                                href="{% url 'base:books'  %}">{% trans "books and articles" %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if page.index == 6 %} active{% endif %}"
+                                href="{% url 'base:fatwa'  %}"> الفتاوى</a>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                المجالس
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <a class="dropdown-item {% if page.index == 4 %} active{% endif %}"
+                                        href="{% url 'base:sessions_quran'  %}">القرآن الكريم</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item {% if page.index == 4 %} active{% endif %}"
+                                        href="{% url 'base:sessions_hadith'  %}"> الحديث الشريف</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item {% if page.index == 4 %} active{% endif %}"
+                                        href="{% url 'base:sessions_othersciences'  %}">العلوم الأخرى</a>
+                                </li>
+                                <li>
+                                    <a  class="dropdown-item {% if page.index == 5 %} active{% endif %}"
+                                        href="{% url 'base:sessions_pillars'  %}">
+                                        <p class="{% if page.index == 14 %} active{% endif %}"> الإسلام وأركانه </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if page.index == 8 %} active{% endif %}"
+                                href="{% url 'base:callus'  %}"> اتصل بنا</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- start nav -->
+    <div class='bar d-none d-sm-block' id="main_bar_in_header">
+        <div class='container'>
+            <div class="   rtl item-collection">
+                <!-- class="{% if nbar == 'home' %}active{% endif %}" -->
+
+                <div class='item '>
+                    <a href="{% url 'base:home'  %}">
+                        <!--                     <div class="icon_nav_img">
+                        <div class='svg active'> -->
+                        {% if page.index == 1 %}
+                        <!-- <img src='{% static "icons/active/home.svg" %}' alt=""> -->
+                        {% else %}
+                        <!-- <img src='{% static "icons/inactive/home.svg" %}' alt=""> -->
+                        {% endif %}
+                        <!--  </div>
+                    </div> -->
+                        <p class="{% if page.index == 1 %} active{% endif %}">الصفحة الرئيسية</p>
+                    </a>
+                </div><!-- ./item -->
+                <div class='item '>
+                    <a href="{% url 'base:quran'  %}">
+
+                        <p class="{% if page.index == 2 %} active{% endif %}">القرآن الكريم </p>
+                    </a>
+                </div><!-- ./item -->
+                <div class='item '>
+                    <a href="{% url 'base:saheh'  %}">
+                        <p class="{% if page.index == 3 %} active{% endif %}"> الحديث الشريف</p>
+                    </a>
+                </div><!-- ./item -->
+                <div class='item '>
+                    <!-- <a href="{% url 'base:other_science'  %}"> -->
+                    <p class="{% if page.index == 9 or page.index == 10 %} active{% endif %}">العلوم الأخرى</p>
+                    <!-- </a> -->
+                    <div class="dropdown">
+                        <div class="item">
+                            <a href="{% url 'base:other_science_audio_subject' subject_id=1  %}">
+                                <p class="{% if page.index == 9 %} active{% endif %}"> المواضيع الصوتية</p>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="{% url 'base:other_science_video'  %}">
+                                <p class="{% if page.index == 10 %} active{% endif %}"> المواضيع المرئية</p>
+                            </a>
+                        </div>
+                    </div>
+                </div><!-- ./item -->
+
+                <div class='item '>
+                    <a href="{% url 'base:books'  %}">
+
+                        <p class="{% if page.index == 5 %} active{% endif %}">{% trans "books and articles" %}</p>
+                    </a>
+                </div><!-- ./item -->
+
+                <div class='item '>
+                    <a href="{% url 'base:fatwa'  %}">
+
+                        <p class="{% if page.index == 6 %} active{% endif %}">الفتاوى</p>
+                    </a>
+                </div><!-- ./item -->
+                <div class='item '>
+                    <!-- <a href="{% url 'base:sessions'  %}"> -->
+                    <p class="{% if page.index == 11 or page.index == 12 or page.index == 13 %} active{% endif %}">
+                        المجالس</p>
+                    <!-- </a> -->
+                    <div class="dropdown">
+                        <div class="item">
+                            <a href="{% url 'base:sessions_quran'  %}">
+                                <p class="{% if page.index == 11 %} active{% endif %}"> القرآن الكريم</p>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="{% url 'base:sessions_hadith'  %}">
+                                <p class="{% if page.index == 12 %} active{% endif %}"> الحديث الشريف</p>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="{% url 'base:sessions_othersciences'  %}">
+                                <p class="{% if page.index == 13 %} active{% endif %}"> العلوم الأخرى</p>
+                            </a>
+                        </div>
+                        <!-- <div class="item">
+                            <a href="{% url 'base:sessions_pillars'  %}">
+                                <p class="{% if page.index == 14 %} active{% endif %}"> الإسلام وأركانه </p>
+                            </a>
+                        </div> -->
+                    </div>
+                </div><!-- ./item -->
+
+
+                <div class='item col-2' onclick="">
+                    <a href="{% url 'base:callus'  %}">
+
+                        <p class="{% if page.index == 8 %} active{% endif %}">اتصل بنا</p>
+                    </a>
+                </div><!-- ./item -->
+            </div>
+        </div><!-- ./container -->
+    </div><!-- ./bar -->
+</div>
+
+
+{% static 'image/back.png' as book_cover %}
+{% comment %} -moz-transform: scaleX(-1);-o-transform: scaleX(-1);-webkit-transform: scaleX(-1);transform: scaleX(-1);
+{% endcomment %}
+<nav id="header-img" style='background: url(  {{ info.cover_page.url|default:book_cover  }} ) no-repeat center center scroll ;'>
+    {% comment %}
+    {% if info.cover_page %} {% else %} -moz-transform: scaleX(-1);-o-transform: scaleX(-1);-moz-transform:
+    scaleX(-1);-o-transform: scaleX(-1);-webkit-transform: scaleX(-1);transform: scaleX(-1); {% endif %} '>
+    {% endcomment %}
+
+    {% comment %}
+
+    <div class="container" style="height:100% ; display: table;">
+        <div class="names  "
+            style="{% if info.cover_page %} {% else %}-moz-transform: scaleX(-1);-o-transform: scaleX(-1);-webkit-transform: scaleX(-1);transform: scaleX(-1);    {% endif %}">
+            {% endcomment %}
+            {% comment %} <p id="title-shaik-name" class="shaikh-font ar-text">فضيلة الشيخ ياسين رشدى</p> {% endcomment
+            %}
+            {% comment %} <p id="title-mousa-name" class="ar-text">جمعية المواساة الإسلامية</p> {% endcomment %}
+            {% comment %}
+            <p id="title-shaik-name" class="shaikh-font ar-text"> ادْعُ إِلَى سَبِيلِ رَبِّكَ بِالْحِكْمَةِ
+                وَالْمَوْعِظَةِ الْحَسَنَةِ </p>
+
+        </div>
+    </div>
+    {% endcomment %}
+    <!-- ./names -->
+
+
+
+
+
+
+
+
+
+</nav>
+<!-- end nav -->
+<!----------------------------------------- end header ----------------------------------------->
+<script>
+    const user_input = $("#user-input")
+    const search_results = $('#search_results')
+    const endpoint = "{% url 'base:main_search' %}"
+    const delay_by_in_ms = 700
+    let scheduled_function = false
+
+    let ajax_call = function (endpoint, request_parameters) {
+
+        $.getJSON(endpoint, request_parameters)
+            .done(response => {
+                // fade out the search_results_div, then:
+                search_results.fadeTo('slow', 0).promise().then(() => {
+                    // replace the HTML contents
+                    search_results.html(response['html_from_view'])
+                    // fade-in the div with new contents
+                    search_results.fadeTo('slow', 1)
+                })
+            })
+    }
+
+    user_input.on('keyup', function () {
+
+        //search_results.show()
+        const request_parameters = {
+            q: $(this).val() // value of user_input: the HTML element with ID user-input
+        }
+        // if scheduled_function is NOT false, cancel the execution of the function
+        if (scheduled_function) {
+            clearTimeout(scheduled_function)
+        }
+        // setTimeout returns the ID of the function to be executed
+        scheduled_function = setTimeout(ajax_call, delay_by_in_ms, endpoint, request_parameters)
+    })
+
+    // hide search results and clear user input value if mouse clicked
+    $(document).click(function () {
+        search_results.hide()
+    });
+
+</script>

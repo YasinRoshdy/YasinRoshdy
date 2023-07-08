@@ -1,0 +1,244 @@
+{% extends "admin/change_form.html" %}
+
+{% block admin_change_form_document_ready %}
+{% for field_name in adminform.model_admin.dynamic_select_fields %}
+<div style="display: none" hx-post="/dynamic-select/{{ opts.app_label }}/{{ opts.model_name }}/{{ field_name }}/"
+    hx-trigger="load, change from:#{{ opts.model_name }}_form"
+    hx-target=".field-{{ field_name }} .related-widget-wrapper  " hx-swap="outerHTML">
+</div>
+{% endfor %}
+{% for field_name in adminform.model_admin.dynamic_input_fields %}
+<div style="display: none" hx-post="/dynamic-select/{{ opts.app_label }}/{{ opts.model_name }}/{{ field_name }}/"
+    hx-trigger="load, change from:#{{ opts.model_name }}_form" hx-target="#id_{{ field_name }}" hx-swap="outerHTML">
+</div>
+{% endfor %}
+<!--  widget-wrapper-links-2 -->
+<script>
+    // Needed to prevent django-jazzmin from converting all
+    // select elements into Select2 widgets. These widgets currently
+    // don't work with the htmx logic included here.
+    django.jQuery('select').addClass("selectfilter");
+
+
+{% comment %}this is start my code {% endcomment %}
+
+django.jQuery(document).ready(function(){
+    if ((django.jQuery('#id_phone_number')) )
+    django.jQuery('#id_phone_number').css({
+        'direction':"ltr",
+        "text-align": "end"
+    })
+     
+    // handle chnage of type other science  type effect url appear and required 
+    if(django.jQuery('#otherscience_form').length){
+
+        var subject =django.jQuery('#id_subject')
+        let selected = subject.find(":selected").text()
+        const is_vid = (val)=> val.includes('صوتي')?false:true
+        const change_appear =(check)=>{
+            if( check)
+            django.jQuery('.field-video_url').show(300)
+            else 
+            django.jQuery('.field-video_url').hide(300)
+        }
+        if(subject.find(":selected").val()==0)
+        change_appear(false)
+        else 
+        change_appear(is_vid(subject.find(":selected").text()))
+          
+        subject.on('change',function( ){
+            subject =django.jQuery('#id_subject')
+            console.log('change' ,subject.find(":selected"))
+             
+            change_appear( is_vid(subject.find(":selected").text()) )
+
+
+        })
+        
+    }
+    
+    {% comment %} init  daily publish form {% endcomment %}
+    if(django.jQuery('#dailypublish_form').length){
+        //set all to none
+        let field_aya= document.getElementsByClassName("form-row field-aya");     
+        let field_sura= document.getElementsByClassName("form-row field-sura");     
+
+        let field_hadith= document.getElementsByClassName("form-row field-hadith");       
+        let field_book_in_alsaheh= document.getElementsByClassName("form-row field-book_in_alsaheh");       
+        let field_chapter_in_alsaheh= document.getElementsByClassName("form-row field-chapter_in_alsaheh");       
+
+
+        let field_content= document.getElementsByClassName("form-row field-content"); 
+        let all = [field_aya,field_hadith,field_content]
+        
+        var val_selected = django.jQuery('#id_publish_type').val()
+        let indx= get_selected_index(val_selected)
+
+        console.log('idx', indx)
+        //for (let i = 0; i < field_aya.length; i++) 
+
+        if (  indx!=0 && field_aya.length  ){
+        field_aya[0].style ="display: none!important";
+        field_sura[0].style ="display: none!important";
+    
+    }
+
+
+  
+        //for (let i = 0; i < field_hadith.length; i++) 
+        
+    if (  indx!=1   ){  
+            if( field_hadith.length)
+                field_hadith[0].style ="display: none!important"; 
+            if( field_hadith.length)
+                field_book_in_alsaheh[0].style ="display: none!important"; 
+            if( field_hadith.length)
+                field_chapter_in_alsaheh[0].style ="display: none!important"; 
+    }
+        
+        //for (let i = 0; i < field_content.length; i++) 
+        
+        if (  indx!=2 && field_content.length  )      
+        field_content[0].style ="display: none!important";
+                 
+            
+
+
+        //django.jQuery('#id_content').parent().css({"display":'none'});
+        //django.jQuery('#field-aya').parent().css({"display":'none'});
+        //django.jQuery('#id_hadith').parent().css({"display":'none'});   
+        
+    }
+ 
+     
+    {% comment %}   daily publish change {% endcomment %}
+    
+    
+        django.jQuery('#id_publish_type').on('change', function() {
+        let field_aya= document.getElementsByClassName("form-row field-aya");             
+        let field_sura= document.getElementsByClassName("form-row field-sura"); 
+
+
+ 
+        let field_hadith= document.getElementsByClassName("form-row field-hadith");       
+        let field_book_in_alsaheh= document.getElementsByClassName("form-row field-book_in_alsaheh");       
+        let field_chapter_in_alsaheh= document.getElementsByClassName("form-row field-chapter_in_alsaheh");       
+
+
+        let field_content= document.getElementsByClassName("form-row field-content"); 
+        let all = [field_aya,field_hadith,field_content]
+            val  =  this.value;
+            console.log("val chanded to",val)
+
+           
+           let ind_selected =-1
+           if( val == "fatwa" || val == "part_of_book")
+            ind_selected = 2
+           else if ( val == "hadith")
+            ind_selected = 1
+           else if ( val == "aya")
+            ind_selected = 0
+
+
+            console.log("ind_selected",ind_selected)
+           
+            
+
+          
+                     
+                
+
+            {% comment %}             
+           for (let action = 0 ; action < 3;action++){
+               for (let y = 0 ; y <all[action].length ;y++) {
+                   console.log('action ',action , ' y' ,y)
+                   console.log
+                    if (ind_selected == action){
+                        all[action][y].style ="display: block!important";
+                        field_sura[y].style ="display:block!important"
+                    }
+                    else  if (ind_selected != action) {    
+                        all[action][y].style ="display: none!important";
+                    }
+                }
+            }
+            {% endcomment %}
+            let indx=ind_selected
+            if (  indx==0   && field_aya.length )
+             {                 
+                {% comment %}
+                field_aya[0].style ="display: block!important";
+                field_sura[0].style ="display: block!important";
+                {% endcomment %}
+                django.jQuery('.form-row.field-aya').slideDown(300)
+                django.jQuery('.form-row.field-sura').slideDown(300)
+            }
+            else {
+                django.jQuery('.form-row.field-aya').slideUp(300)
+                django.jQuery('.form-row.field-sura').slideUp(300)
+                {% comment %} 
+                field_aya[0].style ="display: none!important";
+                field_sura[0].style ="display: none!important";
+                
+                {% endcomment %}
+            
+            }
+                
+                 
+                
+        if (  indx==1 && field_hadith.length  ){  
+            {% comment %} 
+            field_hadith[0].style ="display: block!important";
+            field_book_in_alsaheh[0].style ="display: block!important";
+            field_chapter_in_alsaheh[0].style ="display: block!important";
+            {% endcomment %}
+            django.jQuery(field_hadith[0]).slideDown(300)
+            django.jQuery(field_book_in_alsaheh[0]).slideDown(300)
+            django.jQuery(field_chapter_in_alsaheh[0]).slideDown(300)
+        }
+            else {
+                {% comment  %}
+                field_hadith[0].style ="display: none!important";
+                field_book_in_alsaheh[0].style ="display: none!important";
+                field_chapter_in_alsaheh[0].style ="display: none!important";
+                {% endcomment %}
+                django.jQuery(field_hadith[0]).slideUp(300)
+                django.jQuery(field_book_in_alsaheh[0]).slideUp(300)
+                django.jQuery(field_chapter_in_alsaheh[0]).slideUp(300)
+            }
+            
+            //for (let i = 0; i < field_content.length; i++) 
+            
+            if (  indx==2 && field_content.length  )      
+            {
+            {% comment %} field_content[0].style ="display: block!important"; {% endcomment %}
+            django.jQuery(field_content[0]).slideDown(300)
+            }else {
+            {% comment %} field_content[0].style ="display: none!important"; {% endcomment %}
+            django.jQuery(field_content[0]).slideUp(300)
+        }
+            
+             
+            
+        });
+
+         
+   
+   
+})
+ 
+const get_selected_index  = (val) => {
+    let ind_selected =undefined ;
+    if( val == "fatwa" || val == "part_of_book")
+    ind_selected = 2
+   else if ( val == "hadith")
+    ind_selected = 1
+   else if ( val == "aya")
+    ind_selected = 0
+    return ind_selected
+}
+</script>
+{% endblock %}
+
+
+ 
