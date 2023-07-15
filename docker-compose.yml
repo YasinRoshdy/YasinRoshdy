@@ -18,9 +18,9 @@ services:
 
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:80
     ports:
-      - "8001:8000"
+      - "8000:80"
     environment:
       - POSTGRES_NAME=mwasa
       - POSTGRES_USER=mwasa
@@ -43,7 +43,7 @@ services:
       - PGADMIN_DEFAULT_EMAIL=it.scientific.office@gmail.com
       - PGADMIN_DEFAULT_PASSWORD=ITAdmin
     ports:
-      - 81:80
+      - 81:81
     restart: always
     container_name: almuassaPGAdmin
     networks:
